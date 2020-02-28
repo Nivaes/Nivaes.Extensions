@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageId>Nivaes.Async</PackageId>
+    <Title>Nivaes Async</Title>
+    <AssemblyName>Nivaes.Async</AssemblyName>
+    <RootNamespace>Nivaes.Async</RootNamespace>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+    <Product>Async utils</Product>
+    <Description>Async utrils.</Description>
+    <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  
+</Project>
