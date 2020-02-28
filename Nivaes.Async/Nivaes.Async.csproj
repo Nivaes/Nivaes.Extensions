@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <PackageId>Nivaes.Async</PackageId>
     <Title>Nivaes Async</Title>
     <AssemblyName>Nivaes.Async</AssemblyName>
@@ -14,6 +14,12 @@
 
   <ItemGroup>
     <None Include="Images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <Compile Remove="Sources\AsyncEnumerableHelper.cs" />
+    <None Include="Sources\AsyncEnumerableHelper.cs" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
   </ItemGroup>
   
 </Project>
