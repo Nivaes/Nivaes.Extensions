@@ -14,7 +14,11 @@
     <RepositoryType>git</RepositoryType>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
+
+    <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</RepoRoot>
+    <BaseOutputPath>$(RepoRoot)Artifacts\$(Configuration)\bin\$(MSBuildProjectName)\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(RepoRoot)Artifacts\$(Configuration)\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 
     <LangVersion>latest</LangVersion>
     <NoWarn>$(NoWarn);1591;1701;1702;1705;VSX1000</NoWarn>
