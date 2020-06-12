@@ -5,7 +5,7 @@
     <PackageId>Nivaes.Async</PackageId>
     <Title>Nivaes Async</Title>
     <AssemblyName>Nivaes.Async</AssemblyName>
-    <RootNamespace>Nivaes.Async</RootNamespace>
+    <RootNamespace>Nivaes</RootNamespace>
     <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
     <Product>Async utils</Product>
     <Description>Async utrils.</Description>
