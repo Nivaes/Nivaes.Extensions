@@ -34,5 +34,7 @@ jobs:
     - name: Artifact
       uses: actions/upload-artifact@v2
       with:
+        name: ${{ env.name }}-name
+        path: **/Artifacts/**/*.nupkg
 #        name: ${{ env.name }}-name	
-        path: ${{ github.workspace }}/Artifacts/**/*.nupkg
+#        path: ${{ github.workspace }}/Artifacts/**/*.nupkg
