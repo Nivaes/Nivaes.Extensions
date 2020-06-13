@@ -31,17 +31,8 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release
 
-    - name: Artifact
+    - name: Nuget artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Uno-name
-        path: ~/**
-        #path: ./**
-        #path: Artifacts/**/*.nupkg
-#        name: ${{ env.name }}-name	
-#        path: ${{ github.workspace }}/Artifacts/**/*.nupkg
-    - name: Artifact2
-      uses: actions/upload-artifact@v2
-      with:
-        name: Dos-name2
-        path: ~/**/*.nupkg
+        name: Nuget-${{ github.run_number }}
+        path: ./**/*.nupkg
