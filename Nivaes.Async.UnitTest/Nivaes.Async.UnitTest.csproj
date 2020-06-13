@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <IsPackable>false</IsPackable>
-    <AssemblyName>Nivaes.Guid.UnitTest</AssemblyName>
-    <RootNamespace>Nivaes.Guid.UnitTest</RootNamespace>
+    <AssemblyName>Nivaes.Async.UnitTest</AssemblyName>
+    <RootNamespace>Nivaes.Async.UnitTest</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
