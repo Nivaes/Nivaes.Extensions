@@ -34,8 +34,14 @@ jobs:
     - name: Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ github.workspace }}
-        path: ./**
+        name: ${{ github.workspace }}-name
+        path: ~/**
+        #path: ./**
         #path: Artifacts/**/*.nupkg
 #        name: ${{ env.name }}-name	
 #        path: ${{ github.workspace }}/Artifacts/**/*.nupkg
+    - name: Artifact2
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ github.workspace }}-name2
+        path: ~/**/*.nupkg
