@@ -3,7 +3,6 @@ AsyncEnumerable
 AsyncLazy
 AsyncTemporary
 
-
 ### Actions
 
-![ContinuousIntegration](https://github.com/Nivaes/Nivaes.Async/workflows/ContinuousIntegration/badge.svg)
+![Continuous Integration](https://github.com/Nivaes/Nivaes.Async/workflows/Continuous%20Integration/badge.svg)
