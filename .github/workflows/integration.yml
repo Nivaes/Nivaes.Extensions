@@ -1,4 +1,4 @@
-name: .NET Core
+name: ContinuousIntegration
 
 on:
   push:
