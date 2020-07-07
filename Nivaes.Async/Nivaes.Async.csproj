@@ -19,7 +19,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <Compile Remove="Sources\AsyncEnumerableHelper.cs" />
     <None Include="Sources\AsyncEnumerableHelper.cs" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
   </ItemGroup>
   
 </Project>
