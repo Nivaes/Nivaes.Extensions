@@ -1,0 +1,63 @@
+name: Publish
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build publish:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set version
+      run: echo ::set-env name=VERSION_NUMBER::1.1.${{ github.run_number }} 
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Build
+      run: dotnet build --configuration Release -p:Version=${{ env.VERSION_NUMBER }} 
+
+    - name: Test
+      run: dotnet test --configuration Release --no-build --verbosity normal
+
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ env.VERSION_NUMBER }} 
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: release/${{ env.VERSION_NUMBER }} 
+        release_name: Release Version ${{ env.VERSION_NUMBER }} 
+        body: |
+          Automatic Release ${{ env.VERSION_NUMBER }}  
+          - Release automatically generated.
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Artifacts/Nivaes.Async.${{ env.VERSION_NUMBER }}.nupkg
+        asset_name: Nivaes.Sync.${{ env.VERSION_NUMBER }}.nupkg
+        asset_content_type: application/octet-stream
