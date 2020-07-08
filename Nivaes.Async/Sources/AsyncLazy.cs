@@ -1,18 +1,17 @@
 ﻿namespace Nivaes
 {
     using System;
-    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
 
     public class AsyncLazy<T> : Lazy<ValueTask<T>>
     {
         public AsyncLazy()
-            : base()
+            : base(() => new ValueTask<T>())
         { }
 
         public AsyncLazy(bool isThreadSafe)
-            : base(isThreadSafe)
+            : base(() => new ValueTask<T>(), isThreadSafe)
         { }
 
         public AsyncLazy(T valueFactory)
