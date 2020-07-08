@@ -322,8 +322,8 @@
             var lazy = new AsyncLazy<int>(IntValueProvider, true);
 
             lazy.IsValueCreated.Should().BeFalse();
-            lazy.Value.IsCompleted.Should().BeFalse();
-            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
@@ -343,8 +343,8 @@
             var lazy = new AsyncLazy<int>(IntValueProvider, LazyThreadSafetyMode.ExecutionAndPublication);
 
             lazy.IsValueCreated.Should().BeFalse();
-            lazy.Value.IsCompleted.Should().BeFalse();
-            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 

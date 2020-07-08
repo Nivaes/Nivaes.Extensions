@@ -59,11 +59,11 @@
         { }
 
         public AsyncLazy(Func<T> valueFactory, bool isThreadSafe)
-            : base(() => new ValueTask<T>(Task.Factory.StartNew(valueFactory)), isThreadSafe)
+            : base(() => new ValueTask<T>(valueFactory.Invoke()), isThreadSafe)
         { }
 
         public AsyncLazy(Func<T> valueFactory, LazyThreadSafetyMode mode)
-            : base(() => new ValueTask<T>(Task.Factory.StartNew(valueFactory)), mode)
+            : base(() => new ValueTask<T>(valueFactory.Invoke()), mode)
         { }
 
         public AsyncLazy(Func<ValueTask<T>> taskFactory)
