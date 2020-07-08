@@ -1,4 +1,4 @@
-name: Publish
+name: Build_Release
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   #  - '**/*.md'
 
 jobs:
-  build_publish:
+  build_release:
     runs-on: ubuntu-18.04
 
     steps:
