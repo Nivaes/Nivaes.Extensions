@@ -1,12 +1,9 @@
 ﻿namespace Nivaes.UnitTest
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using System.Linq;
-    using Xunit;
-    using Xunit.Abstractions;
-    using FluentAssertions;
     using System.Threading;
+    using System.Threading.Tasks;
+    using FluentAssertions;
+    using Xunit;
 
     [Trait("TestType", "Unit")]
     public class AsyncLazyTest
