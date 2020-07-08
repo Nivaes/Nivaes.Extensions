@@ -30,6 +30,30 @@
            : base(() => new ValueTask<T>(valueFactory), mode)
         { }
 
+        public AsyncLazy(ValueTask<T> valueTask)
+         : base(() => valueTask)
+        { }
+
+        public AsyncLazy(ValueTask<T> valueTask, bool isThreadSafe)
+         : base(() => valueTask, isThreadSafe)
+        { }
+
+        public AsyncLazy(ValueTask<T> valueTask, LazyThreadSafetyMode mode)
+           : base(() => valueTask, mode)
+        { }
+
+        public AsyncLazy(Task<T> task)
+        : base(() => new ValueTask<T>(task))
+        { }
+
+        public AsyncLazy(Task<T> task, bool isThreadSafe)
+         : base(() => new ValueTask<T>(task), isThreadSafe)
+        { }
+
+        public AsyncLazy(Task<T> task, LazyThreadSafetyMode mode)
+           : base(() => new ValueTask<T>(task), mode)
+        { }
+
         public AsyncLazy(Func<T> valueFactory)
             : base(() => new ValueTask<T>(valueFactory.Invoke()))
         { }
