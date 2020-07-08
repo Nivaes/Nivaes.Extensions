@@ -68,6 +68,27 @@
         }
 
         [Fact]
+        public async Task AsyncLazy_DefaultConstructor_ThreadSafe()
+        {
+            var lazy = new AsyncLazy<int>(true);
+
+            lazy.IsValueCreated.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+
+            var value = await (lazy.Value);
+            value.Should().Be(0);
+
+            lazy.IsValueCreated.Should().BeTrue();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+        }
+
+        [Fact]
         public async Task AsyncLazy_DefaultConstructor_LazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(LazyThreadSafetyMode.ExecutionAndPublication);
@@ -91,7 +112,7 @@
         [Fact]
         public async Task AsyncLazy_AsyncSync_Task_LoadData()
         {
-            var lazy = new AsyncLazy<int>(IntValueProvider);
+            var lazy = new AsyncLazy<int>(IntTaskValueProvider);
 
             lazy.IsValueCreated.Should().BeFalse();
             lazy.Value.IsCompleted.Should().BeFalse();
@@ -109,7 +130,118 @@
             lazy.Value.IsCanceled.Should().BeFalse();
         }
 
-        private async Task<int> IntValueProvider()
+        [Fact]
+        public async Task AsyncLazy_AsyncSync_Task_LoadData_ThreadSafe()
+        {
+            var lazy = new AsyncLazy<int>(IntTaskValueProvider, true);
+
+            lazy.IsValueCreated.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeFalse();
+            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+
+            var value = await (lazy.Value);
+            value.Should().Be(1);
+
+            lazy.IsValueCreated.Should().BeTrue();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AsyncLazy_AsyncSync_Task_LoadData_LazyThreadSafetyMode()
+        {
+            var lazy = new AsyncLazy<int>(IntValueProvider, LazyThreadSafetyMode.ExecutionAndPublication);
+
+            lazy.IsValueCreated.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeFalse();
+            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+
+            var value = await (lazy.Value);
+            value.Should().Be(1);
+
+            lazy.IsValueCreated.Should().BeTrue();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AsyncLazy_AsyncSync_ValueTask_LoadData()
+        {
+            var lazy = new AsyncLazy<int>(IntTaskValueProvider);
+
+            lazy.IsValueCreated.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeFalse();
+            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+
+            var value = await (lazy.Value);
+            value.Should().Be(1);
+
+            lazy.IsValueCreated.Should().BeTrue();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AsyncLazy_AsyncSync_ValueTask_LoadData_ThreadSafe()
+        {
+            var lazy = new AsyncLazy<int>(IntValueTaskValueProvider, true);
+
+            lazy.IsValueCreated.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeFalse();
+            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+
+            var value = await (lazy.Value);
+            value.Should().Be(1);
+
+            lazy.IsValueCreated.Should().BeTrue();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AsyncLazy_AsyncSync_ValueTask_LoadData_LazyThreadSafetyMode()
+        {
+            var lazy = new AsyncLazy<int>(IntValueTaskValueProvider, LazyThreadSafetyMode.ExecutionAndPublication);
+
+            lazy.IsValueCreated.Should().BeFalse();
+            lazy.Value.IsCompleted.Should().BeFalse();
+            lazy.Value.IsCompletedSuccessfully.Should().BeFalse();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+
+            var value = await (lazy.Value);
+            value.Should().Be(1);
+
+            lazy.IsValueCreated.Should().BeTrue();
+            lazy.Value.IsCompleted.Should().BeTrue();
+            lazy.Value.IsCompletedSuccessfully.Should().BeTrue();
+            lazy.Value.IsFaulted.Should().BeFalse();
+            lazy.Value.IsCanceled.Should().BeFalse();
+        }
+
+        private async Task<int> IntTaskValueProvider()
+        {
+            await Task.Delay(10);
+            return 1;
+        }
+
+        private async ValueTask<int> IntValueTaskValueProvider()
         {
             await Task.Delay(10);
             return 1;
