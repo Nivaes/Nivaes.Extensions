@@ -3,12 +3,17 @@ name: Publish
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+    - '**/*.md'
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     branches: [ master ]
+    paths-ignore:
+    - '**/*.md'
 
 jobs:
   build_publish:
-
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-18.04
 
     steps:
