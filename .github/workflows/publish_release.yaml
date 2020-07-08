@@ -2,7 +2,10 @@ name: Publish Release
 
 on:
   release:
-  #  types: [published]
+    types: [published]
+    #types: [released]
+    #types: [prereleased]
+    #types: [deleted]
 
 jobs:
   publish_release:
@@ -16,3 +19,11 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
+
+    #- name: Publish nuget
+    #  if: github.event.action = "released"
+    #  run: echo $"{{ event.release.assets[].browser_download_url }}"
+
+    #- name: Publish prereleased nuget
+    #  if: github.event.action = "prereleased"
+    #  run: echo $"{{ event.release.assets[].browser_download_url }}"
