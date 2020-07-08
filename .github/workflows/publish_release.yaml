@@ -2,10 +2,10 @@ name: Publish Release
 
 on:
   release:
-#    types: [published]
+  #  types: [published]
 
 jobs:
-  build_release:
+  publish_release:
     runs-on: ubuntu-18.04
 
     steps:
