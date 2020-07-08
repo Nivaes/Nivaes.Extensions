@@ -31,7 +31,6 @@
             : base(() => new ValueTask<T>(taskFactory.Invoke()))
         { }
 
-        [DebuggerStepperBoundary]
         public AsyncLazy(LazyThreadSafetyMode mode)
             : base(mode)
         { }
