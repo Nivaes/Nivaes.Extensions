@@ -1,7 +1,7 @@
 name: Build_Release
 
 on:
-  registry_package:
+  release:
 #    types: [published]
 
 jobs:
