@@ -1,11 +1,11 @@
-name: Publish_Release
+name: Publish Release
 
 on:
   release:
 #    types: [published]
 
 jobs:
-  publish_release:
+  build_release:
     runs-on: ubuntu-18.04
 
     steps:
