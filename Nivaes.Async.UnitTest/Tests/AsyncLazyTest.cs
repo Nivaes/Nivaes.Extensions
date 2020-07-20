@@ -35,7 +35,7 @@
         public async Task AsyncLazySyncTaskLoadData()
         {
             new AsyncLazy<int>((() => 1)).IsValueCreated.Should().BeFalse();
-            var value = await (new AsyncLazy<int>((() => 1)).Value);
+            var value = await (new AsyncLazy<int>((() => 1)).Value).ConfigureAwait(true);
             value.Should().Be(1);
             new AsyncLazy<int>((() => 1)).Value.IsCompleted.Should().BeTrue();
             new AsyncLazy<int>((() => 1)).Value.IsCompletedSuccessfully.Should().BeTrue();
@@ -54,7 +54,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(0);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -75,7 +75,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(0);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -96,7 +96,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(0);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -117,7 +117,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -138,7 +138,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -159,7 +159,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -180,7 +180,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -201,7 +201,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -222,7 +222,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -243,7 +243,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -264,7 +264,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -285,7 +285,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -306,7 +306,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -327,7 +327,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -348,7 +348,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -369,7 +369,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -390,7 +390,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -411,7 +411,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -432,7 +432,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -453,7 +453,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
@@ -474,7 +474,7 @@
             lazy.Value.IsFaulted.Should().BeFalse();
             lazy.Value.IsCanceled.Should().BeFalse();
 
-            var value = await (lazy.Value);
+            var value = await (lazy.Value).ConfigureAwait(true);
             value.Should().Be(1);
 
             lazy.IsValueCreated.Should().BeTrue();
