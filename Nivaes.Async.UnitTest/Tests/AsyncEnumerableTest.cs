@@ -67,5 +67,22 @@
 
             i.Should().Be(values.Length);
         }
+
+        [Fact]
+        public async Task ValueToAsyncEnumerableTest()
+        {
+            const int onlyValue = 3;
+
+            var asyncValues = onlyValue.ToAsyncEnumerable();
+
+            int i = 0;
+            await foreach (var value in asyncValues)
+            {
+                mTestOutputHelper.WriteLine($"{value}");
+                i++;
+            }
+
+            i.Should().Be(1);
+        }
     }
 }
