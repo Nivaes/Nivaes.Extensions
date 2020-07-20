@@ -10,7 +10,7 @@
     {
 
         [Fact]
-        public void AsyncLazy_Success()
+        public void AsyncLazySuccess()
         {
             new AsyncLazy<int>(1).IsValueCreated.Should().BeFalse();
             new AsyncLazy<int>(1).Value.Result.Should().Be(1);
@@ -21,7 +21,7 @@
         }
 
         [Fact]
-        public void AsyncLazy_Sync_LoadData()
+        public void AsyncLazySyncLoadData()
         {
             new AsyncLazy<int>((() => 1)).IsValueCreated.Should().BeFalse();
             new AsyncLazy<int>((() => 1)).Value.Result.Should().Be(1);
@@ -32,7 +32,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Sync_Task_LoadData()
+        public async Task AsyncLazySyncTaskLoadData()
         {
             new AsyncLazy<int>((() => 1)).IsValueCreated.Should().BeFalse();
             var value = await (new AsyncLazy<int>((() => 1)).Value);
@@ -44,7 +44,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_DefaultConstructor()
+        public async Task AsyncLazyDefaultConstructor()
         {
             var lazy = new AsyncLazy<int>();
 
@@ -65,7 +65,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_DefaultConstructor_ThreadSafe()
+        public async Task AsyncLazyDefaultConstructorThreadSafe()
         {
             var lazy = new AsyncLazy<int>(true);
 
@@ -86,7 +86,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_DefaultConstructor_LazyThreadSafetyMode()
+        public async Task AsyncLazyDefaultConstructorLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -107,7 +107,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_ValueTask()
+        public async Task AsyncLazyValueTask()
         {
             var lazy = new AsyncLazy<int>(new ValueTask<int>(1));
 
@@ -128,7 +128,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_ValueTask_ThreadSafe()
+        public async Task AsyncLazyValueTaskThreadSafe()
         {
             var lazy = new AsyncLazy<int>(new ValueTask<int>(1), true);
 
@@ -149,7 +149,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_ValueTask_LazyThreadSafetyMode()
+        public async Task AsyncLazyValueTaskLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(new ValueTask<int>(1), LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -170,7 +170,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Task()
+        public async Task AsyncLazyTask()
         {
             var lazy = new AsyncLazy<int>(Task.FromResult<int>(1));
 
@@ -191,7 +191,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Task_ThreadSafe()
+        public async Task AsyncLazyTaskThreadSafe()
         {
             var lazy = new AsyncLazy<int>(Task.FromResult<int>(1), true);
 
@@ -212,7 +212,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Task_LazyThreadSafetyMode()
+        public async Task AsyncLazyTaskLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(Task.FromResult<int>(1), LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -233,7 +233,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Valu()
+        public async Task AsyncLazyValue()
         {
             var lazy = new AsyncLazy<int>(1);
 
@@ -254,7 +254,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Value_ThreadSafe()
+        public async Task AsyncLazyValueThreadSafe()
         {
             var lazy = new AsyncLazy<int>(1, true);
 
@@ -275,7 +275,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Value_LazyThreadSafetyMode()
+        public async Task AsyncLazyValueLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(1, LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -296,7 +296,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Func_LoadData()
+        public async Task AsyncLazyFuncLoadData()
         {
             var lazy = new AsyncLazy<int>(IntValueProvider);
 
@@ -317,7 +317,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Func_LoadData_ThreadSafe()
+        public async Task AsyncLazyFuncLoadDataThreadSafe()
         {
             var lazy = new AsyncLazy<int>(IntValueProvider, true);
 
@@ -338,7 +338,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_Func_LoadData_LazyThreadSafetyMode()
+        public async Task AsyncLazyFuncLoadDataLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(IntValueProvider, LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -359,7 +359,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_AsyncSync_Task_LoadData()
+        public async Task AsyncLazyAsyncSyncTaskLoadData()
         {
             var lazy = new AsyncLazy<int>(IntTaskValueProvider);
 
@@ -380,7 +380,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_AsyncSync_Task_LoadData_ThreadSafe()
+        public async Task AsyncLazyAsyncSyncTaskLoadDataThreadSafe()
         {
             var lazy = new AsyncLazy<int>(IntTaskValueProvider, true);
 
@@ -401,7 +401,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_AsyncSync_Task_LoadData_LazyThreadSafetyMode()
+        public async Task AsyncLazyAsyncSyncTaskLoadDataLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(IntTaskValueProvider, LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -422,7 +422,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_AsyncSync_ValueTask_LoadData()
+        public async Task AsyncLazyAsyncSyncValueTaskLoadData()
         {
             var lazy = new AsyncLazy<int>(IntValueTaskValueProvider);
 
@@ -443,7 +443,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_AsyncSync_ValueTask_LoadData_ThreadSafe()
+        public async Task AsyncLazyAsyncSyncValueTaskLoadDataThreadSafe()
         {
             var lazy = new AsyncLazy<int>(IntValueTaskValueProvider, true);
 
@@ -464,7 +464,7 @@
         }
 
         [Fact]
-        public async Task AsyncLazy_AsyncSync_ValueTask_LoadData_LazyThreadSafetyMode()
+        public async Task AsyncLazyAsyncSyncValueTaskLoadDataLazyThreadSafetyMode()
         {
             var lazy = new AsyncLazy<int>(IntValueTaskValueProvider, LazyThreadSafetyMode.ExecutionAndPublication);
 
@@ -491,13 +491,13 @@
 
         private async Task<int> IntTaskValueProvider()
         {
-            await Task.Delay(10);
+            await Task.Delay(10).ConfigureAwait(true);
             return 1;
         }
 
         private async ValueTask<int> IntValueTaskValueProvider()
         {
-            await Task.Delay(10);
+            await Task.Delay(10).ConfigureAwait(true);
             return 1;
         }
     }

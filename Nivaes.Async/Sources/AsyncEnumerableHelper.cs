@@ -3,27 +3,30 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using System.Threading;
 
     public static class AsyncEnumerableHelper
     {
-        public static async Task<T> FirstOrDefaultAsync<T>(this IAsyncEnumerable<T> values)
+        public static async ValueTask<T> FirstOrDefaultAsync<T>(this IAsyncEnumerable<T> values)
         {
             if (values == null) throw new ArgumentNullException(nameof(values));
 
             var enumerator = values.GetAsyncEnumerator();
 
-            if (await enumerator.MoveNextAsync())
+            if (await enumerator.MoveNextAsync().ConfigureAwait(false))
+            {
                 return enumerator.Current;
+            }
             else
-                return default;
+            {
+                return default!;
+            }
         }
 
         public static async IAsyncEnumerable<T> ToAsyncEnumerable<T>(this T[] values)
         {
-            if (values == null) throw new ArgumentNullException(nameof(values));
-
             await Task.CompletedTask.ConfigureAwait(false);
+
+            if (values == null) throw new ArgumentNullException(nameof(values));
 
             foreach (var value in values)
             {
@@ -33,9 +36,9 @@
 
         public static async IAsyncEnumerable<T> ToAsyncEnumerable<T>(this IEnumerable<T> values)
         {
-            if (values == null) throw new ArgumentNullException(nameof(values));
-
             await Task.CompletedTask.ConfigureAwait(false);
+
+            if (values == null) throw new ArgumentNullException(nameof(values));
 
             foreach (var value in values)
             {

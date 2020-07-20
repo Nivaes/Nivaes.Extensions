@@ -24,7 +24,7 @@
             {
                 lock (mValueLock)
                 {
-                    return !(mValue == null && mCreationTime.Add(mLifetime) < DateTime.UtcNow);
+                    return !(mValue == default && mCreationTime.Add(mLifetime) < DateTime.UtcNow);
                 }
             }
         }
@@ -33,12 +33,11 @@
         {
             get
             {
-                DateTime now = DateTime.UtcNow;
                 lock (mValueLock)
                 {
-                    if (mValue == null || mCreationTime.Add(mLifetime) < DateTime.UtcNow)
+                    if (mValue == default || mCreationTime.Add(mLifetime) < DateTime.UtcNow)
                     {
-                        mValue = mFactory(); 
+                        mValue = mFactory();
                         mCreationTime = DateTime.UtcNow;
                     }
 
