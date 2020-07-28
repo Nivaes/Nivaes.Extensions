@@ -2,7 +2,8 @@ name: Build Release
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - 'releases/**'
     paths-ignore:
     - '**/*.md'
   #pull_request:
@@ -24,8 +25,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Branch name
+    - uses: nelonoel/branch-name@v1
+
     - name: Set version
-      run: echo ::set-env name=VERSION_NUMBER::1.3.${{ github.run_number }} 
+      run: echo ::set-env name=VERSION_NUMBER::${BRANCH_NAME}.${{ github.run_number }} 
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
