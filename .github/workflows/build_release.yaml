@@ -1,6 +1,9 @@
 name: Build Release
 
 on:
+  #create:
+  #  branches:              # Not filter wiht branches name of chreate.
+  #  - 'release/**'
   push:
     branches:
     - 'release/**'
@@ -29,7 +32,10 @@ jobs:
       uses: nelonoel/branch-name@v1
 
     - name: Set version
-      run: echo ::set-env name=VERSION_NUMBER::${BRANCH_NAME}.${{ github.run_number }} 
+      run: echo ::set-env name=VERSION_NUMBER::${BRANCH_NAME}.${{ github.run_number }}
+
+    - name: Version
+      run: echo ${{ env.VERSION_NUMBER }}
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
