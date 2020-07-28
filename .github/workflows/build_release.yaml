@@ -3,7 +3,7 @@ name: Build Release
 on:
   push:
     branches:
-    - 'releases/**'
+    - 'release/**'
     paths-ignore:
     - '**/*.md'
   #pull_request:
