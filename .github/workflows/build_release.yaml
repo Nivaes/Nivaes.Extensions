@@ -17,6 +17,7 @@ on:
 
 jobs:
   build_release:
+
     runs-on: ubuntu-18.04
 
     steps:
@@ -40,7 +41,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 5.0.100-rc.1.20379.13
 
     - name: Build
       run: dotnet build --configuration Release -p:Version=${{ env.VERSION_NUMBER }} 

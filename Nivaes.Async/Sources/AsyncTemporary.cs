@@ -21,7 +21,7 @@
             mLifetime = lifetime;
         }
 
-        public bool HasValue => !(EqualityComparer<T>.Default.Equals(mValue.Value, default) && mCreationTime.Add(mLifetime) < DateTime.UtcNow);
+        public bool HasValue => !(EqualityComparer<T>.Default.Equals(mValue.Value, default!) && mCreationTime.Add(mLifetime) < DateTime.UtcNow);
 
         public async ValueTask<T> GetValue()
         {
