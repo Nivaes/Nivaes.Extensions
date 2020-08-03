@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.0.0</Version>
+    <Version>0.0.0-dev</Version>
 
     <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</RepoRoot>
     <BaseOutputPath>$(RepoRoot)Artifacts\$(Configuration)\bin\$(MSBuildProjectName)\</BaseOutputPath>
