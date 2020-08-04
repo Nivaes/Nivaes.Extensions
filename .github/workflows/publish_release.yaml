@@ -24,11 +24,11 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: release
-      if: github.event_name.types == 'released'
+      if: github.event.action == 'released'
       run: echo Release
 
     - name: prereleased
-      if: github.event_name.types == 'prereleased'
+      if: github.event.action == 'prereleased'
       run: echo Prereleased
 
     - name: Setup .NET Core
