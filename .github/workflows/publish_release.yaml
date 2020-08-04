@@ -47,7 +47,6 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
 
     - name: Pack
-      if: github.event_name == 'push' || (github.event_name != 'pull_request')
       run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.get_version.outputs.version }} 
 
     #- name: Download Release Asset
@@ -56,4 +55,4 @@ jobs:
     #  uses: nivaes/download-release-assets@master
 
     - name: Publish packages
-      run: dotnet nuget push ./**/**.nupkg --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}}
+      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}}
