@@ -31,13 +31,13 @@ jobs:
       if: github.event_name.types == 'prereleased'
       run: echo Prereleased
 
-    - name: Checkout
-      uses: actions/checkout@v2
-
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+
+    - name: Checkout
+      uses: actions/checkout@v2
 
     - name: Build
       run: dotnet build --configuration Release -p:Version=${{ steps.get_version.outputs.version }} 
