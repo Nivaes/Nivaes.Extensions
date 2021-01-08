@@ -10,7 +10,7 @@
     <RootNamespace>Nivaes</RootNamespace>
     <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
     <Product>Async utils</Product>
-    <Description>Async utrils.</Description>
+    <Description>Async utils.</Description>
     <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary</PackageTags>
   </PropertyGroup>
 
