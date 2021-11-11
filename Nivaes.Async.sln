@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.Async", "Nivaes.Async\Nivaes.Async.csproj", "{1C210E5C-DB96-450A-AAD3-7E9A490A6C77}"
 EndProject
@@ -14,6 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.Async.UnitTest", "Nivaes.Async.UnitTest\Nivaes.Async.UnitTest.csproj", "{490E3C1F-1557-4A05-85AF-820656BDE4E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{F4D73AD5-D1A8-40B9-A368-F80EE1EC5F53}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build_release.yaml = .github\workflows\build_release.yaml
+		.github\workflows\ci.yaml = .github\workflows\ci.yaml
+		.github\workflows\publish_release.yaml = .github\workflows\publish_release.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +39,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4D73AD5-D1A8-40B9-A368-F80EE1EC5F53} = {471DB30B-9B29-4995-8998-F4B932884709}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1293C21-FC06-453B-9A57-9160C13E28A4}
