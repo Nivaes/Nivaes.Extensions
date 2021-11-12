@@ -2,11 +2,16 @@
 
 Nivaes Async is a set of utilities for handling asynchronous functions.
 
-## AsyncEnumerable
+## Features
 
-## AsyncLazy
+### AsyncEnumerable
 
-Provides support for lazy initialization, permitiendo la creación del objeto con una llamada asíncrona.
+Proporciona metodos para acceder a una colección asíncrona.
+
+
+### AsyncLazy
+
+Provides support for lazy initialization, allowing the creation of the object with an asynchronous call.
 
 ``` C#
     using Nivaes;
@@ -27,9 +32,11 @@ Provides support for lazy initialization, permitiendo la creación del objeto con
     }
 ```
 
-## AsyncTemporary
+### AsyncTemporary
 
-### Actions
+It amacen a variable, which is generated asynchronously, over a period of time.
+
+## Actions
 
 ![CI](https://github.com/Nivaes/Nivaes.Async/workflows/CI/badge.svg)
 
