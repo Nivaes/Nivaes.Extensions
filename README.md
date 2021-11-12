@@ -36,6 +36,13 @@ async Task Main()
 
 It amacen a variable, which is generated asynchronously, over a period of time.
 
+### Packages
+
+| NuGet Package | Latest Versions |
+| --- | --- |
+| [Nivaes.Async](https://www.nuget.org/packages/Nivaes.Async) | [![latest stable version](https://img.shields.io/nuget/v/Nivaes.Async.svg)](https://www.nuget.org/packages/Nivaes.Async) |
+
+
 ## Integration
 
 ![CI](https://github.com/Nivaes/Nivaes.Async/workflows/CI/badge.svg)
