@@ -84,7 +84,7 @@ namespace Nivaes
 
         public AsyncLazy(Func<Task<T>> taskFactory)
             : base(() => new ValueTask<T>(taskFactory.Invoke()))
-        { }       
+        { }
 
         public AsyncLazy(Func<Task<T>> taskFactory, bool isThreadSafe)
             : base(() => new ValueTask<T>(taskFactory.Invoke()), isThreadSafe)

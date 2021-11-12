@@ -6,6 +6,27 @@ Nivaes Async is a set of utilities for handling asynchronous functions.
 
 ## AsyncLazy
 
+Provides support for lazy initialization, permitiendo la creación del objeto con una llamada asíncrona.
+
+``` C#
+    using Nivaes;
+
+    async ValueTask<MyClass> InitMyObject()
+    {
+        ....
+        MyClass myObject = await myService.GetObject();
+        return myObject;
+    }
+
+    async Task Main()
+    {
+        ... 
+        var lazyObject = new AsyncLazy<MyClass>(InitMyObject);
+        var MyObject = await lazyObject.Value;
+        ...
+    }
+```
+
 ## AsyncTemporary
 
 ### Actions
