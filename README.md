@@ -11,7 +11,7 @@ Proporciona metodos para acceder a una colección asíncrona.
 
 ### AsyncLazy
 
-Provides support for lazy initialization, allowing the creation of the object with an asynchronous call.
+Provides support for Lazy initialization, allowing the creation of the object with an asynchronous call.
 
 ``` C#
     using Nivaes;
