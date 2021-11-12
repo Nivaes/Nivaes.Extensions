@@ -36,7 +36,7 @@ async Task Main()
 
 It amacen a variable, which is generated asynchronously, over a period of time.
 
-## Actions
+## Integration
 
 ![CI](https://github.com/Nivaes/Nivaes.Async/workflows/CI/badge.svg)
 
