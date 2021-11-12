@@ -14,22 +14,22 @@ Proporciona metodos para acceder a una colección asíncrona.
 Provides support for Lazy initialization, allowing the creation of the object with an asynchronous call.
 
 ``` C#
-    using Nivaes;
+using Nivaes;
 
-    async ValueTask<MyClass> InitMyObject()
-    {
-        ....
-        MyClass myObject = await myService.GetObject();
-        return myObject;
-    }
+async ValueTask<MyClass> InitMyObject()
+{
+    ....
+    MyClass myObject = await myService.GetObject();
+    return myObject;
+}
 
-    async Task Main()
-    {
-        ... 
-        var lazyObject = new AsyncLazy<MyClass>(InitMyObject);
-        var MyObject = await lazyObject.Value;
-        ...
-    }
+async Task Main()
+{
+    ... 
+    var lazyObject = new AsyncLazy<MyClass>(InitMyObject);
+    var MyObject = await lazyObject.Value;
+    ...
+}
 ```
 
 ### AsyncTemporary
