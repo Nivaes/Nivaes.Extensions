@@ -37,8 +37,12 @@ jobs:
           7.0.x
           8.0.x
 
+    - name: Restore Dependencies
+      run: |
+          dotnet restore
+
     - name: Build
-      run: dotnet build --configuration Release
+      run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal 
+      run: dotnet test --configuration Release --no-build --verbosity normal --no-restore

@@ -44,15 +44,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Restore Dependencies
+      run: |
+          dotnet restore
+
     - name: Build
-      run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} 
+      run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
 
     - name: Pack
       if: github.event_name == 'push' || (github.event_name != 'pull_request')
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} 
+      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Create Release
       if: github.event_name == 'push' || (github.event_name != 'pull_request')

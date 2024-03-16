@@ -45,14 +45,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Restore Dependencies
+      run: |
+          dotnet restore
+
     - name: Build
-      run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} 
+      run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal --no-restore
 
     - name: Pack
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} 
+      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     #- name: Download Release Asset
     #  env:
@@ -60,4 +64,4 @@ jobs:
     #  uses: nivaes/download-release-assets@master
 
     - name: Publish packages
-      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}}
+      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}} --no-restore
