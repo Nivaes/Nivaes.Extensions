@@ -52,7 +52,7 @@ jobs:
       run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal --no-restore
 
     - name: Pack
       if: github.event_name == 'push' || (github.event_name != 'pull_request')

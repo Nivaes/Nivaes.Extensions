@@ -14,11 +14,8 @@
     <RepositoryType>git</RepositoryType>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.0.0-dev</Version>
-
-    <!--<RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</RepoRoot>
-    <BaseOutputPath>$(RepoRoot)Artifacts\$(Configuration)\bin\$(MSBuildProjectName)\</BaseOutputPath>
-    <BaseIntermediateOutputPath>$(RepoRoot)Artifacts\$(Configuration)\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>-->
+    <VersionPrefix>0.0.0</VersionPrefix>
+    <VersionSuffix>dev</VersionSuffix>
 
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
@@ -31,19 +28,9 @@
     <IsTestProject>$(MSBuildProjectName.Contains('UnitTest'))</IsTestProject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Roslynator.Analyzers" Version="4.2.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="AsyncFixer" Version="1.6.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+  <PropertyGroup>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
 
 </Project>

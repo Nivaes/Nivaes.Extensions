@@ -64,4 +64,4 @@ jobs:
     #  uses: nivaes/download-release-assets@master
 
     - name: Publish packages
-      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}} --no-restore
+      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }} --no-restore
