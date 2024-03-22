@@ -26,9 +26,9 @@ namespace Nivaes
 
         public bool HasValue => !(EqualityComparer<T>.Default.Equals(mValue.Value, default!) && mCreationTime.Add(mLifetime) < DateTime.UtcNow);
 
-        public async ValueTask<T> GetValue()
+        public async ValueTask<T?> GetValue()
         {
-            if (mValue.Value == null || mCreationTime.Add(mLifetime) < DateTime.UtcNow)
+            if (EqualityComparer<T?>.Default.Equals(mValue.Value, default(T?)) || mCreationTime.Add(mLifetime) < DateTime.UtcNow)
             {
                 mValue.Value = await mFactory().ConfigureAwait(false);
                 mCreationTime = DateTime.UtcNow;
