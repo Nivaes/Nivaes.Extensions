@@ -2,7 +2,7 @@ name: Build Release
 
 on:
   #create:
-  #  branches:              # Not filter wiht branches name of chreate.
+  #  branches:              # Not filter wiht branches name of create.
   #  - 'release/**'
   push:
     branches:

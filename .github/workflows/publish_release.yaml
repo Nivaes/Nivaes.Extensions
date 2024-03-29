@@ -2,12 +2,9 @@ name: Publish Release
 
 on:
   release:
-    #types:[edited]
-    #types: [published]
     types:
       - released
       - prereleased
-    #types: [deleted]
 
 jobs:
   publish_release:
@@ -58,10 +55,5 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
-    #- name: Download Release Asset
-    #  env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #  uses: nivaes/download-release-assets@master
-
     - name: Publish packages
-      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }} --no-restore
+      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }}
