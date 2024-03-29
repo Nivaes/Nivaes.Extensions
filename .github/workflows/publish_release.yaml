@@ -43,7 +43,7 @@ jobs:
           8.0.x
           
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Restore Dependencies
       run: |
