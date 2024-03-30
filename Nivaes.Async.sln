@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{471DB30B-9B29-4995-8998-F4B932884709}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
@@ -23,9 +25,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{54739534-F2D5-4D0A-871C-B079B521F537}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2ACCD343-194B-4A49-8C4F-E4F3BD9A6E46}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BAC8976E-D256-49B0-8D54-5515598F65A5}"
 	ProjectSection(SolutionItems) = preProject
 		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{65E9C3B4-E50B-4EED-899C-F31ED68A8B9C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build_release.yaml = .github\workflows\build_release.yaml
+		.github\workflows\ci.yaml = .github\workflows\ci.yaml
+		.github\workflows\publish_release.yaml = .github\workflows\publish_release.yaml
 	EndProjectSection
 EndProject
 Global
@@ -47,9 +56,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F4D73AD5-D1A8-40B9-A368-F80EE1EC5F53} = {471DB30B-9B29-4995-8998-F4B932884709}
 		{54739534-F2D5-4D0A-871C-B079B521F537} = {87CC8064-26A9-4082-9EF1-E224304EA566}
-		{2ACCD343-194B-4A49-8C4F-E4F3BD9A6E46} = {471DB30B-9B29-4995-8998-F4B932884709}
+		{BAC8976E-D256-49B0-8D54-5515598F65A5} = {471DB30B-9B29-4995-8998-F4B932884709}
+		{65E9C3B4-E50B-4EED-899C-F31ED68A8B9C} = {BAC8976E-D256-49B0-8D54-5515598F65A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1293C21-FC06-453B-9A57-9160C13E28A4}
