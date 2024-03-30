@@ -28,14 +28,9 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: | 
-          3.1.x
-          5.0.x
-          6.0.x
-          7.0.x
-          8.0.x
+         global-json-file: global.json
 
     - name: Restore Dependencies
       run: |
