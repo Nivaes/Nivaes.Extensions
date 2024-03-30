@@ -2,9 +2,8 @@ name: Build Release
 
 on:
   workflow_dispatch:
-  #create:
-  #  branches:              # Not filter wiht branches name of create.
-  #  - 'release/**'
+    branches:
+    - 'release/**'
   # push:
   #   branches:
   #   - 'release/**'
