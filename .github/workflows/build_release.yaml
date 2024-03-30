@@ -1,15 +1,16 @@
 name: Build Release
 
 on:
+  workflow_dispatch:
   #create:
   #  branches:              # Not filter wiht branches name of create.
   #  - 'release/**'
-  push:
-    branches:
-    - 'release/**'
-    paths-ignore:
-    - '**/*.md'
-    - '**/*.sln'
+  # push:
+  #   branches:
+  #   - 'release/**'
+  #   paths-ignore:
+  #   - '**/*.md'
+  #   - '**/*.sln'
   #pull_request:
   #  types: [opened, synchronize, reopened]
   #  branches: [ master ]
