@@ -2,19 +2,6 @@ name: Build Release
 
 on:
   workflow_dispatch:
-    branches:
-    - 'release/**'
-  # push:
-  #   branches:
-  #   - 'release/**'
-  #   paths-ignore:
-  #   - '**/*.md'
-  #   - '**/*.sln'
-  #pull_request:
-  #  types: [opened, synchronize, reopened]
-  #  branches: [ master ]
-  #  paths-ignore:
-  #  - '**/*.md'
 
 jobs:
   build_release:
