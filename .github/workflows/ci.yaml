@@ -30,7 +30,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-         global-json-file: global.json
+         global-json-file: ./global.json
 
     - name: Restore Dependencies
       run: |
