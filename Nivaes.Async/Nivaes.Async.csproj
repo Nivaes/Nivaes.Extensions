@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 
     <PackageId>Nivaes.Async</PackageId>
@@ -16,12 +16,6 @@
 
   <ItemGroup>
     <None Include="Images\icon.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <Compile Remove="Sources\AsyncEnumerableHelper.cs" />
-    <None Include="Sources\AsyncEnumerableHelper.cs" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
   </ItemGroup>
   
 </Project>
