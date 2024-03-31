@@ -9,9 +9,9 @@
     <AssemblyName>Nivaes.Async</AssemblyName>
     <RootNamespace>Nivaes</RootNamespace>
     <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-    <Product>Async utils</Product>
+    <Product>Tools</Product>
     <Description>Nivaes Async is a set of utilities for handling asynchronous functions.</Description>
-    <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary</PackageTags>
+    <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;tool</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
