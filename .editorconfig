@@ -26,6 +26,7 @@ csharp_style_expression_bodied_indexers = true:warning
 csharp_style_expression_bodied_accessors = true:warning
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
+dotnet_diagnostic.S4456.severity = none
 
 # Solution Files
 [*.sln]
