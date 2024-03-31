@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
-    <AssemblyName>Nivaes.Async.UnitTest</AssemblyName>
-    <RootNamespace>Nivaes.Async.UnitTest</RootNamespace>
+    <AssemblyName>Nivaes.Tools.UnitTest</AssemblyName>
+    <RootNamespace>Nivaes.Tools.UnitTest</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,14 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nivaes.Async\Nivaes.Tools.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
+    <ProjectReference Include="..\Nivaes.Tools\Nivaes.Tools.csproj" />
   </ItemGroup>
   
 </Project>
