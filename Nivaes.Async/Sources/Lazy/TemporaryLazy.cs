@@ -29,7 +29,7 @@
             }
         }
 
-        public T Value
+        public T? Value
         {
             get
             {
@@ -46,5 +46,4 @@
             }
         }
     }
-}
 }
