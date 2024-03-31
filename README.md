@@ -1,4 +1,4 @@
-# Nivaes Async
+# Nivaes Tool
 
 Nivaes Async is a set of utilities for handling asynchronous functions.
 
@@ -45,8 +45,8 @@ It amacen a variable, which is generated asynchronously, over a period of time.
 
 ## Integration
 
-![CI](https://github.com/Nivaes/Nivaes.Async/workflows/CI/badge.svg)
+![CI](https://github.com/Nivaes/Nivaes.Tools/workflows/CI/badge.svg)
 
-![Build Release](https://github.com/Nivaes/Nivaes.Async/workflows/Build%20Release/badge.svg)
+![Build Release](https://github.com/Nivaes/Nivaes.Tools/workflows/Build%20Release/badge.svg)
 
-![Publish Release](https://github.com/Nivaes/Nivaes.Async/workflows/Publish%20Release/badge.svg)
+![Publish Release](https://github.com/Nivaes/Nivaes.Tools/workflows/Publish%20Release/badge.svg)
