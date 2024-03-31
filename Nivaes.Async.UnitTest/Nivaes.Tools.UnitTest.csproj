@@ -11,7 +11,6 @@
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Moq" />
-    <PackageReference Include="Nivaes.Async" />
     <PackageReference Include="Nivaes.DataTestGenerator.XUnit" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
@@ -22,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nivaes.Async\Nivaes.Async.csproj" />
+    <ProjectReference Include="..\Nivaes.Async\Nivaes.Tools.csproj" />
   </ItemGroup>
 
   <ItemGroup>

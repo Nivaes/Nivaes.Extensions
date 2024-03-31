@@ -4,9 +4,9 @@
     <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 
-    <PackageId>Nivaes.Async</PackageId>
-    <Title>Nivaes Async</Title>
-    <AssemblyName>Nivaes.Async</AssemblyName>
+    <PackageId>Nivaes.Tools</PackageId>
+    <Title>Nivaes Tools</Title>
+    <AssemblyName>Nivaes.Tools</AssemblyName>
     <RootNamespace>Nivaes</RootNamespace>
     <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
     <Product>Tools</Product>
