@@ -47,7 +47,7 @@ It amacen a variable, which is generated asynchronously, over a period of time.
 
 ## Integration
 
-![CI](https://github.com/Nivaes/Nivaes.Extensions/workflows/CI/badge.svg)[![codecov](https://codecov.io/gh/Nivaes/Nivaes.Extensions/graph/badge.svg?token=HIMJ4XQBFU)](https://codecov.io/gh/Nivaes/Nivaes.Tools)
+![CI](https://github.com/Nivaes/Nivaes.Extensions/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/Nivaes/Nivaes.Extensions/graph/badge.svg?token=HIMJ4XQBFU)](https://codecov.io/gh/Nivaes/Nivaes.Tools)
 
 ![Build Release](https://github.com/Nivaes/Nivaes.Extensions/workflows/Build%20Release/badge.svg)
 
