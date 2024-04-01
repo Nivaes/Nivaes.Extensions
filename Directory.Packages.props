@@ -1,5 +1,6 @@
 <Project>
   <ItemGroup>
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
     <PackageVersion Include="Nivaes.DataTestGenerator.XUnit" Version="2.9.12" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="FluentAssertions" Version="6.12.0" />
