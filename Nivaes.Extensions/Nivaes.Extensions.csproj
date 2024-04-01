@@ -4,14 +4,14 @@
     <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 
-    <PackageId>Nivaes.Tools</PackageId>
-    <Title>Nivaes Tools</Title>
-    <AssemblyName>Nivaes.Tools</AssemblyName>
+    <PackageId>Nivaes.Extensions</PackageId>
+    <Title>Nivaes Extensions</Title>
+    <AssemblyName>Nivaes.Extensions</AssemblyName>
     <RootNamespace>Nivaes</RootNamespace>
     <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-    <Product>Tools</Product>
-    <Description>Nivaes Async is a set of utilities for handling asynchronous functions.</Description>
-    <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;tool</PackageTags>
+    <Product>Extensions</Product>
+    <Description>Nivaes extensions.</Description>
+    <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;extensions</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
