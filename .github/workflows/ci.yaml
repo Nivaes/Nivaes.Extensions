@@ -27,11 +27,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
@@ -46,3 +41,9 @@ jobs:
 
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal --no-restore
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+
