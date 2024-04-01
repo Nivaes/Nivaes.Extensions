@@ -2,7 +2,7 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.Tools", "Nivaes.Tools\Nivaes.Tools.csproj", "{1C210E5C-DB96-450A-AAD3-7E9A490A6C77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.Extensions", "Nivaes.Extensions\Nivaes.Extensions.csproj", "{1C210E5C-DB96-450A-AAD3-7E9A490A6C77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{471DB30B-9B29-4995-8998-F4B932884709}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.Tools.UnitTest", "Nivaes.Tools.UnitTest\Nivaes.Tools.UnitTest.csproj", "{490E3C1F-1557-4A05-85AF-820656BDE4E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.Extensions.UnitTest", "Nivaes.Extensions.UnitTest\Nivaes.Extensions.UnitTest.csproj", "{490E3C1F-1557-4A05-85AF-820656BDE4E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{87CC8064-26A9-4082-9EF1-E224304EA566}"
 	ProjectSection(SolutionItems) = preProject

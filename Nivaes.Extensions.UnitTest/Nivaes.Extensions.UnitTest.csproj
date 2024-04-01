@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nivaes.Tools\Nivaes.Tools.csproj" />
+    <ProjectReference Include="..\Nivaes.Extensions\Nivaes.Extensions.csproj" />
   </ItemGroup>
   
 </Project>

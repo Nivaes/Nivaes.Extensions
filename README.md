@@ -1,4 +1,6 @@
-# Nivaes Tool
+# Nivaes Extensions
+
+Extensions funcionality.
 
 Nivaes Async is a set of utilities for handling asynchronous functions.
 
@@ -6,7 +8,7 @@ Nivaes Async is a set of utilities for handling asynchronous functions.
 
 ### AsyncEnumerable
 
-Proporciona metodos para acceder a una colección asíncrona.
+Proporciona metodos para acceder a una colecciï¿½n asï¿½ncrona.
 
 
 ### AsyncLazy
@@ -40,13 +42,13 @@ It amacen a variable, which is generated asynchronously, over a period of time.
 
 | NuGet Package | Latest Versions |
 | --- | --- |
-| [Nivaes.Async](https://www.nuget.org/packages/Nivaes.Async) | [![latest stable version](https://img.shields.io/nuget/v/Nivaes.Async.svg)](https://www.nuget.org/packages/Nivaes.Async) |
+| [Nivaes.Extensions](https://www.nuget.org/packages/Nivaes.Extensions) | [![latest stable version](https://img.shields.io/nuget/v/Nivaes.Extensions.svg)](https://www.nuget.org/packages/Nivaes.Extensions) |
 
 
 ## Integration
 
-![CI](https://github.com/Nivaes/Nivaes.Tools/workflows/CI/badge.svg)[![codecov](https://codecov.io/gh/Nivaes/Nivaes.Tools/graph/badge.svg?token=HIMJ4XQBFU)](https://codecov.io/gh/Nivaes/Nivaes.Tools)
+![CI](https://github.com/Nivaes/Nivaes.Extensions/workflows/CI/badge.svg)[![codecov](https://codecov.io/gh/Nivaes/Nivaes.Extensions/graph/badge.svg?token=HIMJ4XQBFU)](https://codecov.io/gh/Nivaes/Nivaes.Tools)
 
-![Build Release](https://github.com/Nivaes/Nivaes.Tools/workflows/Build%20Release/badge.svg)
+![Build Release](https://github.com/Nivaes/Nivaes.Extensions/workflows/Build%20Release/badge.svg)
 
-![Publish Release](https://github.com/Nivaes/Nivaes.Tools/workflows/Publish%20Release/badge.svg)
+![Publish Release](https://github.com/Nivaes/Nivaes.Extensions/workflows/Publish%20Release/badge.svg)
