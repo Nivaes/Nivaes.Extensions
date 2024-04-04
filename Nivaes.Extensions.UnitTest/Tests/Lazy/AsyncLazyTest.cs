@@ -10,10 +10,10 @@
     {
 
         [Fact]
-        public void AsyncLazySuccess()
+        public async Task AsyncLazySuccess()
         {
             new AsyncLazy<int>(1).IsValueCreated.Should().BeFalse();
-            new AsyncLazy<int>(1).Value.Result.Should().Be(1);
+            (await new AsyncLazy<int>(1).Value).Should().Be(1);
             new AsyncLazy<int>(1).Value.IsCompleted.Should().BeTrue();
             new AsyncLazy<int>(1).Value.IsCompletedSuccessfully.Should().BeTrue();
             new AsyncLazy<int>(1).Value.IsFaulted.Should().BeFalse();
@@ -21,10 +21,10 @@
         }
 
         [Fact]
-        public void AsyncLazySyncLoadData()
+        public async Task AsyncLazySyncLoadData()
         {
             new AsyncLazy<int>((() => 1)).IsValueCreated.Should().BeFalse();
-            new AsyncLazy<int>((() => 1)).Value.Result.Should().Be(1);
+            (await new AsyncLazy<int>((() => 1)).Value).Should().Be(1);
             new AsyncLazy<int>((() => 1)).Value.IsCompleted.Should().BeTrue();
             new AsyncLazy<int>((() => 1)).Value.IsCompletedSuccessfully.Should().BeTrue();
             new AsyncLazy<int>((() => 1)).Value.IsFaulted.Should().BeFalse();

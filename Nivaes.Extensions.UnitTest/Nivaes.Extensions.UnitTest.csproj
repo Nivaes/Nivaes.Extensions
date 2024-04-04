@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
     <AssemblyName>Nivaes.Extensions.UnitTest</AssemblyName>
     <RootNamespace>Nivaes.Extensions.UnitTest</RootNamespace>
   </PropertyGroup>
