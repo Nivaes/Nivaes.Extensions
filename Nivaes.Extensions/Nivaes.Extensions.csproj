@@ -17,5 +17,9 @@
   <ItemGroup>
     <None Include="Images\icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="..\Nivaes.Extensions.UnitTest\Nivaes.Extensions.UnitTest.csproj" />
+  </ItemGroup>
   
 </Project>
