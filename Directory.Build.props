@@ -2,7 +2,7 @@
   
   <PropertyGroup>
     <Copyright>Copyright (c) Nivaes Systems</Copyright>
-    <PackageProject>https://github.com/Nivaes</PackageProject>
+    <PackageProject>https://github.com/Extensions</PackageProject>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
     <Authors>Nivaes Systems</Authors>
@@ -10,7 +10,7 @@
     <Owners>Nivaes</Owners>
     <PackageReleaseNotes>https://www.nivaes.com</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <RepositoryUrl>https://github.com/Nivaes/Nivaes.Async</RepositoryUrl> 
+    <RepositoryUrl>https://github.com/Nivaes/Nivaes.Extensions</RepositoryUrl> 
     <RepositoryType>git</RepositoryType>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <NeutralLanguage>en</NeutralLanguage>
