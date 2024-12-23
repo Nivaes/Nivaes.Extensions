@@ -1,4 +1,4 @@
-﻿namespace Nivaes.Async.UnitTest
+﻿namespace Nivaes.UnitTest
 {
     using System.Threading;
     using System.Threading.Tasks;

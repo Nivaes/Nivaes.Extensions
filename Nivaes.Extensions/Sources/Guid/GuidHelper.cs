@@ -1,4 +1,4 @@
-﻿namespace Nivaes.Sources.Guid
+﻿namespace Nivaes
 {
     using System;
 

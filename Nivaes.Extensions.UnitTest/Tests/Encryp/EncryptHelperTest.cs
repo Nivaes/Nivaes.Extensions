@@ -1,4 +1,4 @@
-﻿namespace Nivaes
+﻿namespace Nivaes.UnitTest
 {
     using System.Threading.Tasks;
     using FluentAssertions;

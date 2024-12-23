@@ -1,7 +1,6 @@
-﻿namespace Nivaes.Tools.UnitTest.Tests.Guid
+﻿namespace Nivaes.UnitTest
 {
     using System;
-    using Nivaes.Sources.Guid;
     using Xunit;
 
     [Trait("TestType", "Unit")]
