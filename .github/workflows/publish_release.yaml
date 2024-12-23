@@ -48,7 +48,7 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal --no-restore
 
     - name: Pack
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Publish packages
-      run: dotnet nuget push ./Artifacts/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }}
+      run: dotnet nuget push ./artifacts/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }}

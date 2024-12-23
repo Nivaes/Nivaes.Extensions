@@ -38,7 +38,7 @@ jobs:
 
     - name: Pack
       if: github.event_name == 'push' || (github.event_name != 'pull_request')
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Create Release
       if: github.event_name == 'push' || (github.event_name != 'pull_request')
@@ -61,4 +61,4 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
          upload_url: ${{ steps.create_release.outputs.upload_url }}
-         targets: ./Artifacts/*.nupkg
+         targets: ./artifacts/*.nupkg
