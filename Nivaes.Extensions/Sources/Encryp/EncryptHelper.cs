@@ -13,17 +13,14 @@
         /// </summary>
         /// <param name="plainText">String to be encrypted</param>
         /// <param name="password">Password</param>
-        public static async ValueTask<string?> Encrypt(string plainText, string password)
+        public static async ValueTask<string?> Encrypt(string plainText, string password, byte[] salt, int iterations)
         {
             if (plainText == null)
             {
                 return null;
             }
 
-            if (password == null)
-            {
-                password = string.Empty;
-            }
+            password ??= string.Empty;
 
             // Get the bytes of the string
             var bytesToBeEncrypted = Encoding.UTF8.GetBytes(plainText);
@@ -33,7 +30,7 @@
             using var sha256 = SHA256.Create();
             passwordBytes = sha256.ComputeHash(passwordBytes);
 
-            var bytesEncrypted = await Encrypt(bytesToBeEncrypted, passwordBytes).ConfigureAwait(true);
+            var bytesEncrypted = await Encrypt(bytesToBeEncrypted, passwordBytes, salt, iterations).ConfigureAwait(true);
 
             return Convert.ToBase64String(bytesEncrypted);
         }
@@ -44,17 +41,14 @@
         /// <param name="encryptedText">String to be decrypted</param>
         /// <param name="password">Password used during encryption</param>
         /// <exception cref="FormatException"></exception>
-        public static async ValueTask<string?> Decrypt(string encryptedText, string password)
+        public static async ValueTask<string?> Decrypt(string encryptedText, string password, byte[] salt, int iterations)
         {
             if (encryptedText == null)
             {
                 return null;
             }
 
-            if (password == null)
-            {
-                password = string.Empty;
-            }
+            password ??= string.Empty;
 
             // Get the bytes of the string
             var bytesToBeDecrypted = Convert.FromBase64String(encryptedText);
@@ -63,24 +57,20 @@
             using var sha256 = SHA256.Create();
             passwordBytes = sha256.ComputeHash(passwordBytes);
 
-            var bytesDecrypted = await Decrypt(bytesToBeDecrypted, passwordBytes).ConfigureAwait(true);
+            var bytesDecrypted = await Decrypt(bytesToBeDecrypted, passwordBytes, salt, iterations).ConfigureAwait(true);
 
             return Encoding.UTF8.GetString(bytesDecrypted);
         }
 
-        private static async ValueTask<byte[]> Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
+        private static async ValueTask<byte[]> Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes, byte[] salt, int iterations)
         {
             byte[] encryptedBytes;
-
-            // Set your salt here, change it to meet your flavor:
-            // The salt bytes must be at least 8 bytes.
-            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
             using (MemoryStream ms = new MemoryStream())
             {
                 using (var aes = Aes.Create())
                 {
-                    using var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000, HashAlgorithmName.SHA256);
+                    using var key = new Rfc2898DeriveBytes(passwordBytes, salt, iterations, HashAlgorithmName.SHA256);
 
                     aes.KeySize = 256;
                     aes.BlockSize = 128;
@@ -102,19 +92,15 @@
             return encryptedBytes;
         }
 
-        private static async ValueTask<byte[]> Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
+        private static async ValueTask<byte[]> Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes, byte[] salt, int iterations)
         {
             byte[] decryptedBytes;
-
-            // Set your salt here, change it to meet your flavor:
-            // The salt bytes must be at least 8 bytes.
-            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
             using (MemoryStream ms = new MemoryStream())
             {
                 using (var aes = Aes.Create())
                 {
-                    using var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000, HashAlgorithmName.SHA256);
+                    using var key = new Rfc2898DeriveBytes(passwordBytes, salt, iterations, HashAlgorithmName.SHA256);
 
                     aes.KeySize = 256;
                     aes.BlockSize = 128;

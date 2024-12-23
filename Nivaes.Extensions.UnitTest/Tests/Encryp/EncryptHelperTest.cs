@@ -12,12 +12,17 @@
         [Fact]
         public async Task EncryptSuccess1()
         {
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
             var originMessage = "kjkdkdif";
-            var encriptedMessage = await EncryptHelper.Encrypt(originMessage, "pass").ConfigureAwait(true);
+            var encriptedMessage = await EncryptHelper.Encrypt(originMessage, "pass", saltBytes, 1000).ConfigureAwait(true);
+            Assert.NotNull(encriptedMessage);
 
             encriptedMessage.Should().NotBeNull();
 
-            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, "pass").ConfigureAwait(true);
+            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, "pass", saltBytes, 1000).ConfigureAwait(true);
 
             decryptMessage.Should().Be(originMessage);
         }
@@ -31,11 +36,16 @@
         [InlineData("kajsdñfklas dfaksjf ñadfj ñdfjsie", "138382929.30293+ç")]
         public async Task EncryptSuccess2(string message, string pass)
         {
-            var encriptedMessage = await EncryptHelper.Encrypt(message, pass).ConfigureAwait(true);
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            var encriptedMessage = await EncryptHelper.Encrypt(message, pass, saltBytes, 1000).ConfigureAwait(true);
+            Assert.NotNull(encriptedMessage);
 
             encriptedMessage.Should().NotBeNull();
 
-            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, pass).ConfigureAwait(true);
+            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, pass, saltBytes, 1000).ConfigureAwait(true);
 
             decryptMessage.Should().Be(message);
         }
@@ -44,12 +54,17 @@
         [GenerateStringInlineData(DataNumber = 3, MinSize = 35, MaxSize = 2000)]
         public async Task EncryptSuccess3(string message)
         {
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
             string pass = "938!·";
-            var encriptedMessage = await EncryptHelper.Encrypt(message, pass).ConfigureAwait(true);
+            var encriptedMessage = await EncryptHelper.Encrypt(message, pass, saltBytes, 1000).ConfigureAwait(true);
+            Assert.NotNull(encriptedMessage);
 
             encriptedMessage.Should().NotBeNull();
 
-            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, pass).ConfigureAwait(true);
+            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, pass, saltBytes, 1000).ConfigureAwait(true);
 
             decryptMessage.Should().Be(message);
         }
