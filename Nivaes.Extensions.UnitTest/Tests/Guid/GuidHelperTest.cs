@@ -1,6 +1,7 @@
 ﻿namespace Nivaes.UnitTest
 {
     using System;
+    using FluentAssertions;
     using Xunit;
 
     [Trait("TestType", "Unit")]
@@ -15,7 +16,7 @@
             var combineGuid1 = GuidHelper.Combine(guid1, guid2);
             var combineGuid2 = GuidHelper.Combine(guid2, guid1);
 
-            Assert.Equal(combineGuid1, combineGuid2);
+            combineGuid1.Should().Be(combineGuid2);
         }
 
         [Fact]
@@ -29,7 +30,7 @@
                 var combineGuid1 = GuidHelper.Combine(guid1, guid2);
                 var combineGuid2 = GuidHelper.Combine(guid2, guid1);
 
-                Assert.Equal(combineGuid1, combineGuid2);
+                combineGuid1.Should().Be(combineGuid2);
             }
         }
 
@@ -50,7 +51,7 @@
                 var combineGuid1 = GuidHelper.Combine(guid1, guid2, guid3, guid4, guid5, guid6, guid7, guid8);
                 var combineGuid2 = GuidHelper.Combine(guid2, guid5, guid6, guid8, guid7, guid1, guid3, guid4);
 
-                Assert.Equal(combineGuid1, combineGuid2);
+                combineGuid1.Should().Be(combineGuid2);
             }
         }
     }

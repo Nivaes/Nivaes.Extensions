@@ -1,6 +1,7 @@
 ﻿namespace Nivaes.UnitTest
 {
     using System;
+    using FluentAssertions;
     using Xunit;
 
     [Trait("TestType", "Unit")]
@@ -20,24 +21,24 @@
         public void OneSingletonTest()
         {
             var instance1 = Singleton<TestClass1>.Instance;
-            Assert.NotNull(instance1);
+            instance1.Should().NotBeNull();
 
             var instance2 = Singleton<TestClass1>.Instance;
-            Assert.NotNull(instance2);
+            instance2.Should().NotBeNull();
 
-            Assert.Equal(instance1.Id, instance2.Id);
+            instance1.Id.Should().Be(instance2.Id);
         }
 
         [Fact]
         public void TwoSingletonTest()
         {
             var instance1 = Singleton<TestClass1>.Instance;
-            Assert.NotNull(instance1);
+            instance1.Should().NotBeNull();
 
             var instance2 = Singleton<TestClass2>.Instance;
-            Assert.NotNull(instance2);
+            instance2.Should().NotBeNull();
 
-            Assert.NotEqual(instance1.Id, instance2.Id);
+            instance1.Id.Should().NotBe(instance2.Id);
         }
 
         [Fact]
@@ -46,12 +47,12 @@
             for (int i = 0; i < 10000; i++)
             {
                 var instance1 = Singleton<TestClass1>.Instance;
-                Assert.NotNull(instance1);
+                instance1.Should().NotBeNull();
 
                 var instance2 = Singleton<TestClass2>.Instance;
-                Assert.NotNull(instance2);
+                instance2.Should().NotBeNull();
 
-                Assert.NotEqual(instance1.Id, instance2.Id);
+                instance1.Id.Should().NotBe(instance2.Id);
             }
         }
 
@@ -59,14 +60,14 @@
         public void ClearSingletonTest()
         {
             var instance1 = Singleton<TestClass1>.Instance;
-            Assert.NotNull(instance1);
+            instance1.Should().NotBeNull();
 
             Singleton<TestClass2>.Clear();
 
             var instance2 = Singleton<TestClass1>.Instance;
-            Assert.NotNull(instance2);
+            instance2.Should().NotBeNull();
 
-            Assert.NotEqual(instance1.Id, instance2.Id);
+            instance1.Id.Should().NotBe(instance2.Id);
         }
     }
 }

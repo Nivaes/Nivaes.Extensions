@@ -18,11 +18,9 @@
 
             var originMessage = "kjkdkdif";
             var encriptedMessage = await EncryptHelper.Encrypt(originMessage, "pass", saltBytes, 1000).ConfigureAwait(true);
-            Assert.NotNull(encriptedMessage);
-
             encriptedMessage.Should().NotBeNull();
 
-            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, "pass", saltBytes, 1000).ConfigureAwait(true);
+            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage!, "pass", saltBytes, 1000).ConfigureAwait(true);
 
             decryptMessage.Should().Be(originMessage);
         }
@@ -41,11 +39,9 @@
             var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
             var encriptedMessage = await EncryptHelper.Encrypt(message, pass, saltBytes, 1000).ConfigureAwait(true);
-            Assert.NotNull(encriptedMessage);
-
             encriptedMessage.Should().NotBeNull();
 
-            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, pass, saltBytes, 1000).ConfigureAwait(true);
+            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage!, pass, saltBytes, 1000).ConfigureAwait(true);
 
             decryptMessage.Should().Be(message);
         }
@@ -60,11 +56,9 @@
 
             string pass = "938!·";
             var encriptedMessage = await EncryptHelper.Encrypt(message, pass, saltBytes, 1000).ConfigureAwait(true);
-            Assert.NotNull(encriptedMessage);
-
             encriptedMessage.Should().NotBeNull();
 
-            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage, pass, saltBytes, 1000).ConfigureAwait(true);
+            var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage!, pass, saltBytes, 1000).ConfigureAwait(true);
 
             decryptMessage.Should().Be(message);
         }
