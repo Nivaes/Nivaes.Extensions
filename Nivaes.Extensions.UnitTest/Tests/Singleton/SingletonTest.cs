@@ -69,5 +69,18 @@
 
             instance1.Id.Should().NotBe(instance2.Id);
         }
+
+        [Fact]
+        public void AddSingletonTest()
+        {
+            var instance1 = new TestClass1();
+
+            Singleton<TestClass1>.Add(instance1);
+
+            var instance2 = Singleton<TestClass1>.Instance;
+
+            instance1.Id.Should().Be(instance2.Id);
+            instance1.Should().BeSameAs(instance2);
+        }
     }
 }

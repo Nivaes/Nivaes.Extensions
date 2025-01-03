@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Threading;
 
     public abstract class Singleton
     {
@@ -51,6 +52,22 @@
                 }
                 return (T)mInstance!;
             }
+        }
+
+        public static void Add(T instance)
+        {
+            Instances.AddOrUpdate(typeof(T),
+                (_) =>
+                {
+                    mInstance = instance;
+                    return new Singleton<T>();
+                },
+                (_, _) =>
+                {
+                    mInstance = instance;
+                    return new Singleton<T>();
+                }
+            );
         }
     }
 }
