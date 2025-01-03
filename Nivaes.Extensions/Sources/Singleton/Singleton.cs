@@ -26,8 +26,8 @@
         }
     }
 
-    public class Singleton<T> : Singleton
-         where T : new()
+    public class Singleton<TValue> : Singleton
+         where TValue : new()
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types", Justification = "<Pending>")]
         private static object? mInstance;
@@ -38,34 +38,34 @@
             mInstance = null;
         }
 
-        public static T Instance
+        public static TValue Instance
         {
             get
             {
                 if (mInstance == null)
                 {
-                    Instances.GetOrAdd(typeof(T), (_) =>
+                    Instances.GetOrAdd(typeof(TValue), (_) =>
                     {
-                        mInstance = new T();
-                        return new Singleton<T>();
+                        mInstance = new TValue();
+                        return new Singleton<TValue>();
                     });
                 }
-                return (T)mInstance!;
+                return (TValue)mInstance!;
             }
         }
 
-        public static void Add(T instance)
+        public static void Add(TValue instance)
         {
-            Instances.AddOrUpdate(typeof(T),
+            Instances.AddOrUpdate(typeof(TValue),
                 (_) =>
                 {
                     mInstance = instance;
-                    return new Singleton<T>();
+                    return new Singleton<TValue>();
                 },
                 (_, _) =>
                 {
                     mInstance = instance;
-                    return new Singleton<T>();
+                    return new Singleton<TValue>();
                 }
             );
         }
