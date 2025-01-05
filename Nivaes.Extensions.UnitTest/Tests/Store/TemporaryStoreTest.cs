@@ -163,7 +163,6 @@
 
             var store = new TemporaryStore<TestClass1>();
 
-
             var key1 = store.Add(instance1_1, durationMilliseconds:100);
             var key2 = store.Add(instance2_1);
             await Task.Delay(101);
@@ -187,7 +186,6 @@
             var instance2_1 = new TestClass1();
 
             var store = new TemporaryStore<TestClass1>();
-
 
             var key1 = store.Add(instance1_1, durationMilliseconds: 100);
             var key2 = store.Add(instance2_1);

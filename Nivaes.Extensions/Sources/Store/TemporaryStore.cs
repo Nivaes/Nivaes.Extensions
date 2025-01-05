@@ -20,6 +20,10 @@
             }
         }
 
+        public TemporaryStore()
+        {
+        }
+
         public int Add(TValue value, int durationMilliseconds = int.MaxValue)
         {
             var key = Interlocked.Increment(ref countKey);
