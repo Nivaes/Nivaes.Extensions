@@ -1,45 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 
-    <PackageId>Nivaes.Extensions</PackageId>
-    <Title>Nivaes Extensions</Title>
-    <AssemblyName>Nivaes.Extensions</AssemblyName>
-    <RootNamespace>Nivaes</RootNamespace>
-    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-    <Product>Extensions</Product>
-    <Description>Nivaes extensions.</Description>
-    <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;extensions</PackageTags>
+		<PackageId>Nivaes.Extensions</PackageId>
+		<Title>Nivaes Extensions</Title>
+		<AssemblyName>Nivaes.Extensions</AssemblyName>
+		<RootNamespace>Nivaes</RootNamespace>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Product>Extensions</Product>
+		<Description>Nivaes extensions.</Description>
+		<PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;extensions</PackageTags>
 
-    <IsAotCompatible>true</IsAotCompatible>
-  </PropertyGroup>
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="Images\icon.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-  
-  <PropertyGroup>
+	<ItemGroup>
+		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+		<None Include="Docs\Readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<PropertyGroup>
 		<PackageReadmeFile>Readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <InternalsVisibleTo Include="..\Nivaes.Extensions.UnitTest\Nivaes.Extensions.UnitTest.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="..\Nivaes.Extensions.UnitTest\Nivaes.Extensions.UnitTest.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Roslynator.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  
+	<ItemGroup>
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
 </Project>
