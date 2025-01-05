@@ -154,5 +154,57 @@
             instance1_1!.Id.Should().Be(instance1_2!.Id);
             instance2_1!.Id.Should().Be(instance2_2!.Id);
         }
+
+        [Fact]
+        public async Task CleanTemporaryStoreTest()
+        {
+            var instance1_1 = new TestClass1();
+            var instance2_1 = new TestClass1();
+
+            var store = new TemporaryStore<TestClass1>();
+
+
+            var key1 = store.Add(instance1_1, durationMilliseconds:100);
+            var key2 = store.Add(instance2_1);
+            await Task.Delay(101);
+
+            var result1 = store.TryGetAndRemove(key1, out var instance1_2);
+            result1.Should().BeFalse();
+            instance1_2.Should().BeNull();
+
+            var result2 = store.TryGetAndRemove(key2, out var instance2_2);
+            result2.Should().BeTrue();
+            instance2_1.Should().NotBeNull();
+            instance2_2.Should().NotBeNull();
+            instance2_1.Id.Should().Be(instance2_2!.Id);
+            instance2_1.Should().BeSameAs(instance2_2);
+        }
+
+        [Fact]
+        public async Task CleanupTemporaryStoreTest()
+        {
+            var instance1_1 = new TestClass1();
+            var instance2_1 = new TestClass1();
+
+            var store = new TemporaryStore<TestClass1>();
+
+
+            var key1 = store.Add(instance1_1, durationMilliseconds: 100);
+            var key2 = store.Add(instance2_1);
+            await Task.Delay(101);
+
+            store.Cleanup();
+
+            var result1 = store.TryGetAndRemove(key1, out var instance1_2);
+            result1.Should().BeFalse();
+            instance1_2.Should().BeNull();
+
+            var result2 = store.TryGetAndRemove(key2, out var instance2_2);
+            result2.Should().BeTrue();
+            instance2_1.Should().NotBeNull();
+            instance2_2.Should().NotBeNull();
+            instance2_1.Id.Should().Be(instance2_2!.Id);
+            instance2_1.Should().BeSameAs(instance2_2);
+        }
     }
 }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes
+﻿namespace Nivaes
 {
+    using System.Collections.Concurrent;
+
     public class TemporaryStore<TValue>
     {
-        private readonly ConcurrentDictionary<int, StoreItem> _store = new();
+        private readonly ConcurrentDictionary<int, StoreItem> values = new();
 
         private int countKey = 0;
 
@@ -31,14 +26,14 @@ namespace Nivaes
 
             var expiryTime = DateTime.UtcNow.AddMilliseconds(durationMilliseconds);
             var storeItem = new StoreItem(value: value, expiryTime: expiryTime);
-            _store[key] = storeItem;
+            values[key] = storeItem;
 
             return key;
         }
 
         public bool TryGetAndRemove(int key, out TValue? value)
         {
-            if (_store.TryRemove(key, out var storeItem))
+            if (values.TryRemove(key, out var storeItem))
             {
                 if (storeItem.ExpiryTime > DateTime.UtcNow)
                 {
@@ -52,11 +47,11 @@ namespace Nivaes
 
         public void Cleanup()
         {
-            foreach (var key in _store.Keys)
+            foreach (var key in values.Keys)
             {
-                if (_store.TryGetValue(key, out var storeItem) && storeItem.ExpiryTime <= DateTime.UtcNow)
+                if (values.TryGetValue(key, out var storeItem) && storeItem.ExpiryTime <= DateTime.UtcNow)
                 {
-                    _store.TryRemove(key, out _);
+                    values.TryRemove(key, out _);
                 }
             }
         }
