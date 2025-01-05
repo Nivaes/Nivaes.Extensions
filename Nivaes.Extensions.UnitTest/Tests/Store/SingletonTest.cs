@@ -91,8 +91,6 @@
             TestClass1? instance1 = null, instance2 = null, instance3 = null;
             Task t1 = Task.Run(() =>
             {
-                //instance1 = new TestClass1();
-                //Singleton<TestClass1>.Add(instance1);
                 instance1 = Singleton<TestClass1>.Instance;
             });
 
