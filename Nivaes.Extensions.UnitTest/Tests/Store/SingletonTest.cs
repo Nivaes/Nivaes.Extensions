@@ -7,6 +7,7 @@
     [Trait("TestType", "Unit")]
     public class SingletonTest
     {
+        #region TestClass
         public class TestClass1()
         {
             public Guid Id { get; } = Guid.NewGuid();
@@ -16,6 +17,7 @@
         {
             public Guid Id { get; } = Guid.NewGuid();
         }
+        #endregion
 
         [Fact]
         public void OneSingletonTest()
