@@ -13,6 +13,7 @@
 		<Description>Nivaes extensions.</Description>
 		<PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;extensions</PackageTags>
 
+    <OptimizationPreference>Speed</OptimizationPreference>
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
