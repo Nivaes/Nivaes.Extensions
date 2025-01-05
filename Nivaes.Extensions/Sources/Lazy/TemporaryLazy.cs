@@ -15,7 +15,7 @@
         {
             mFactory = factory;
             mLifetime = lifetime;
-            mValueLock = new object();
+            mValueLock = new ();
         }
 
         public bool HasValue

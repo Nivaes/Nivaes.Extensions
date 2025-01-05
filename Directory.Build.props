@@ -15,15 +15,17 @@
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <NeutralLanguage>en</NeutralLanguage>
     <VersionPrefix>0.0.0</VersionPrefix>
-    <VersionSuffix>dev</VersionSuffix>
+    <VersionSuffix>-dev-0.0.1</VersionSuffix>
 
     <!--<LangVersion>latest</LangVersion>-->
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
     <NoWarn>$(NoWarn);1591;1701;1702;1705;VSX1000</NoWarn>
     <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
 
-    <Platform>AnyCPU</Platform>
+    <!--<Platform>AnyCPU</Platform>-->
     <DebugType>full</DebugType>
     <IsTestProject>$(MSBuildProjectName.Contains('UnitTest'))</IsTestProject>
   </PropertyGroup>

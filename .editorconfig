@@ -27,6 +27,7 @@ csharp_style_expression_bodied_accessors = true:warning
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
 dotnet_diagnostic.S4456.severity = none
+csharp_prefer_system_threading_lock = true:suggestion
 
 # Solution Files
 [*.sln]
@@ -220,3 +221,9 @@ csharp_space_between_square_brackets = false:warning
 # Wrapping Options
 csharp_preserve_single_line_blocks = true:warning
 csharp_preserve_single_line_statements = false:warning
+
+# S2743: Static fields should not be used in generic types
+dotnet_diagnostic.S2743.severity = none
+
+# S1066: Mergeable "if" statements should be combined
+dotnet_diagnostic.S1066.severity = none
