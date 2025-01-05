@@ -12,11 +12,17 @@
     <Product>Extensions</Product>
     <Description>Nivaes extensions.</Description>
     <PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;extensions</PackageTags>
+
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="Images\icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
+  
+  <PropertyGroup>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+	</PropertyGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="..\Nivaes.Extensions.UnitTest\Nivaes.Extensions.UnitTest.csproj" />
