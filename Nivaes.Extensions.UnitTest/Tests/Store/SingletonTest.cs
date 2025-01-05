@@ -121,11 +121,13 @@
         public async Task MultiTaskSingletonTest02()
         {
             TestClass1? instance1 = null, instance2 = null, instance3 = null;
+
             Task t1 = Task.Run(() =>
             {
                 instance1 = new TestClass1();
                 Singleton<TestClass1>.Add(instance1);
             });
+            await Task.WhenAll(t1);
 
             Task t2 = Task.Run(() =>
             {
@@ -136,7 +138,6 @@
                 instance3 = Singleton<TestClass1>.Instance;
             });
 
-            await t1;
             await Task.WhenAll(t2, t3);
 
             instance1.Should().NotBeNull();
