@@ -3,7 +3,7 @@
     <PackageVersion Include="coverlet.collector" Version="6.0.3" />
     <PackageVersion Include="Nivaes.DataTestGenerator.XUnit" Version="2.10.13" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageVersion Include="FluentAssertions" Version="8.0.0" />
+    <PackageVersion Include="FluentAssertions" Version="8.0.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="xunit" Version="2.9.3" />
