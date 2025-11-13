@@ -6,12 +6,14 @@ on:
       - released
       - prereleased
 
+permissions:
+  contents: read
+
 jobs:
   publish_release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
-
     - name: Get Version
       uses: nivaes/version-run-number@develop
       id: version_run_number
@@ -30,25 +32,23 @@ jobs:
       run: echo Prereleased
 
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        global-json-file: ./global.json
-
-    - name: Restore Dependencies
+    - name: Release
       run: |
-          dotnet restore
+        echo "Tag: ${{ github.event.release.tag_name }}"
 
-    - name: Build
-      run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+    - name: Download attach assets 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release download "${{ github.event.release.tag_name }}" --dir ./Artifacts
+       
+    - name: Show downloaded files
+      run: ls -lh ./Artifacts
 
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal --no-restore
-
-    - name: Pack
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v5   
 
     - name: Publish packages
-      run: dotnet nuget push ./artifacts/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }}
+      run: dotnet nuget push ./Artifacts/*.nupkg --skip-duplicate --source nuget.org --api-key ${{ secrets.NIVAES_NUGET_TOKEN }}
