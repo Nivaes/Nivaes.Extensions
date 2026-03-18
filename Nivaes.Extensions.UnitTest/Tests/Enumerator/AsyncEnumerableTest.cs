@@ -1,88 +1,85 @@
-﻿namespace Nivaes.UnitTest
+﻿using Shouldly;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace Nivaes.UnitTest;
+
+
+[Trait("TestType", "Unit")]
+public class AsyncEnumerableTest
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using System.Linq;
-    using Xunit;
-    using Xunit.Abstractions;
-    using FluentAssertions;
+    private readonly ITestOutputHelper mTestOutputHelper;
 
-    [Trait("TestType", "Unit")]
-    public class AsyncEnumerableTest
+    public AsyncEnumerableTest(ITestOutputHelper testOutputHelper)
     {
-        private readonly ITestOutputHelper mTestOutputHelper;
+        mTestOutputHelper = testOutputHelper;
+    }
 
-        public AsyncEnumerableTest(ITestOutputHelper testOutputHelper)
+    [Fact]
+    public async Task IEnumerableToAsyncEnumerableTest()
+    {
+        IEnumerable<int> values = new List<int>() { 1, 2, 3, 4, 5 };
+
+        var asyncValues = values.ToAsyncEnumerable();
+
+        int i = 0;
+        await foreach (var value in asyncValues)
         {
-            mTestOutputHelper = testOutputHelper;
+            mTestOutputHelper.WriteLine($"{value}");
+            i++;
         }
 
-        [Fact]
-        public async Task IEnumerableToAsyncEnumerableTest()
+        i.ShouldBe(values.Count());
+    }
+
+    [Fact]
+    public async Task ListToAsyncEnumerableTest()
+    {
+        var values = new List<int>() { 1, 2, 3, 4, 5 };
+
+        var asyncValues = values.ToAsyncEnumerable();
+
+        int i = 0;
+        await foreach (var value in asyncValues)
         {
-            IEnumerable<int> values = new List<int>() { 1, 2, 3, 4, 5 };
-
-            var asyncValues = values.ToAsyncEnumerable();
-
-            int i = 0;
-            await foreach (var value in asyncValues)
-            {
-                mTestOutputHelper.WriteLine($"{value}");
-                i++;
-            }
-
-            i.Should().Be(values.Count());
+            mTestOutputHelper.WriteLine($"{value}");
+            i++;
         }
 
-        [Fact]
-        public async Task ListToAsyncEnumerableTest()
+        i.ShouldBe(values.Count);
+    }
+
+    [Fact]
+    public async Task ArrayToAsyncEnumerableTest()
+    {
+        var values = new int[] { 1, 2, 3, 4, 5 };
+
+        var asyncValues = values.ToAsyncEnumerable();
+
+        int i = 0;
+        await foreach (var value in asyncValues)
         {
-            var values = new List<int>() { 1, 2, 3, 4, 5 };
-
-            var asyncValues = values.ToAsyncEnumerable();
-
-            int i = 0;
-            await foreach (var value in asyncValues)
-            {
-                mTestOutputHelper.WriteLine($"{value}");
-                i++;
-            }
-
-            i.Should().Be(values.Count);
+            mTestOutputHelper.WriteLine($"{value}");
+            i++;
         }
 
-        [Fact]
-        public async Task ArrayToAsyncEnumerableTest()
+        i.ShouldBe(values.Length);
+    }
+
+    [Fact]
+    public async Task ValueToAsyncEnumerableTest()
+    {
+        const int onlyValue = 3;
+
+        var asyncValues = onlyValue.ToAsyncEnumerable();
+
+        int i = 0;
+        await foreach (var value in asyncValues)
         {
-            var values = new int[] { 1, 2, 3, 4, 5 };
-
-            var asyncValues = values.ToAsyncEnumerable();
-
-            int i = 0;
-            await foreach (var value in asyncValues)
-            {
-                mTestOutputHelper.WriteLine($"{value}");
-                i++;
-            }
-
-            i.Should().Be(values.Length);
+            mTestOutputHelper.WriteLine($"{value}");
+            i++;
         }
 
-        [Fact]
-        public async Task ValueToAsyncEnumerableTest()
-        {
-            const int onlyValue = 3;
-
-            var asyncValues = onlyValue.ToAsyncEnumerable();
-
-            int i = 0;
-            await foreach (var value in asyncValues)
-            {
-                mTestOutputHelper.WriteLine($"{value}");
-                i++;
-            }
-
-            i.Should().Be(1);
-        }
+        i.ShouldBe(1);
     }
 }

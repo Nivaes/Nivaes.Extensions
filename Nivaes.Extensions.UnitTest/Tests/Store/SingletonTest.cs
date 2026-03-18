@@ -1,153 +1,152 @@
-﻿namespace Nivaes.UnitTest
+﻿using System;
+using Shouldly;
+using Xunit;
+
+namespace Nivaes.UnitTest;
+
+[Trait("TestType", "Unit")]
+public class SingletonTest
 {
-    using System;
-    using FluentAssertions;
-    using Xunit;
-
-    [Trait("TestType", "Unit")]
-    public class SingletonTest
+    #region TestClass
+    public class TestClass1()
     {
-        #region TestClass
-        public class TestClass1()
-        {
-            public Guid Id { get; } = Guid.NewGuid();
-        }
+        public Guid Id { get; } = Guid.NewGuid();
+    }
 
-        public class TestClass2()
-        {
-            public Guid Id { get; } = Guid.NewGuid();
-        }
-        #endregion
+    public class TestClass2()
+    {
+        public Guid Id { get; } = Guid.NewGuid();
+    }
+    #endregion
 
-        [Fact]
-        public void OneSingletonTest()
+    [Fact]
+    public void OneSingletonTest()
+    {
+        var instance1 = Singleton<TestClass1>.Instance;
+        instance1.ShouldNotBeNull();
+
+        var instance2 = Singleton<TestClass1>.Instance;
+        instance2.ShouldNotBeNull();
+
+        instance1.Id.ShouldBe(instance2.Id);
+    }
+
+    [Fact]
+    public void TwoSingletonTest()
+    {
+        var instance1 = Singleton<TestClass1>.Instance;
+        instance1.ShouldNotBeNull();
+
+        var instance2 = Singleton<TestClass2>.Instance;
+        instance2.ShouldNotBeNull();
+
+        instance1.Id.ShouldNotBe(instance2.Id);
+    }
+
+    [Fact]
+    public void MultipleTest()
+    {
+        for (int i = 0; i < 10000; i++)
         {
             var instance1 = Singleton<TestClass1>.Instance;
-            instance1.Should().NotBeNull();
-
-            var instance2 = Singleton<TestClass1>.Instance;
-            instance2.Should().NotBeNull();
-
-            instance1.Id.Should().Be(instance2.Id);
-        }
-
-        [Fact]
-        public void TwoSingletonTest()
-        {
-            var instance1 = Singleton<TestClass1>.Instance;
-            instance1.Should().NotBeNull();
+            instance1.ShouldNotBeNull();
 
             var instance2 = Singleton<TestClass2>.Instance;
-            instance2.Should().NotBeNull();
+            instance2.ShouldNotBeNull();
 
-            instance1.Id.Should().NotBe(instance2.Id);
+            instance1.Id.ShouldNotBe(instance2.Id);
         }
+    }
 
-        [Fact]
-        public void MultipleTest()
+    [Fact]
+    public void ClearSingletonTest()
+    {
+        var instance1 = Singleton<TestClass1>.Instance;
+        instance1.ShouldNotBeNull();
+
+        Singleton<TestClass1>.Clear();
+
+        var instance2 = Singleton<TestClass1>.Instance;
+        instance2.ShouldNotBeNull();
+
+        instance1.ShouldNotBe(instance2);
+        instance1.ShouldNotBeSameAs(instance2);
+        instance1.Id.ShouldNotBe(instance2.Id);
+    }
+
+    [Fact]
+    public void AddSingletonTest()
+    {
+        var instance1 = new TestClass1();
+
+        Singleton<TestClass1>.Add(instance1);
+
+        var instance2 = Singleton<TestClass1>.Instance;
+
+        instance1.Id.ShouldBe(instance2.Id);
+        instance1.ShouldBeSameAs(instance2);
+    }
+
+    [Fact]
+    public async Task MultiTaskSingletonTest01()
+    {
+        TestClass1? instance1 = null, instance2 = null, instance3 = null;
+        Task t1 = Task.Run(() =>
         {
-            for (int i = 0; i < 10000; i++)
-            {
-                var instance1 = Singleton<TestClass1>.Instance;
-                instance1.Should().NotBeNull();
+            instance1 = Singleton<TestClass1>.Instance;
+        });
 
-                var instance2 = Singleton<TestClass2>.Instance;
-                instance2.Should().NotBeNull();
-
-                instance1.Id.Should().NotBe(instance2.Id);
-            }
-        }
-
-        [Fact]
-        public void ClearSingletonTest()
+        Task t2 = Task.Run(() =>
         {
-            var instance1 = Singleton<TestClass1>.Instance;
-            instance1.Should().NotBeNull();
-
-            Singleton<TestClass1>.Clear();
-
-            var instance2 = Singleton<TestClass1>.Instance;
-            instance2.Should().NotBeNull();
-
-            instance1.Should().NotBe(instance2);
-            instance1.Should().NotBeSameAs(instance2);
-            instance1.Id.Should().NotBe(instance2.Id);
-        }
-
-        [Fact]
-        public void AddSingletonTest()
+            instance2 = Singleton<TestClass1>.Instance;
+        });
+        Task t3 = Task.Run(() =>
         {
-            var instance1 = new TestClass1();
+            instance3 = Singleton<TestClass1>.Instance;
+        });
 
+        await Task.WhenAll(t1, t2, t3);
+
+        instance1.ShouldNotBeNull();
+        instance2.ShouldNotBeNull();
+        instance3.ShouldNotBeNull();
+
+        instance1!.ShouldBeSameAs(instance2);
+        instance1!.ShouldBeSameAs(instance3);
+        instance1!.Id.ShouldBe(instance2!.Id);
+        instance1!.Id.ShouldBe(instance3!.Id);
+    }
+
+    [Fact]
+    public async Task MultiTaskSingletonTest02()
+    {
+        TestClass1? instance1 = null, instance2 = null, instance3 = null;
+
+        Task t1 = Task.Run(() =>
+        {
+            instance1 = new TestClass1();
             Singleton<TestClass1>.Add(instance1);
+        });
+        await Task.WhenAll(t1);
 
-            var instance2 = Singleton<TestClass1>.Instance;
-
-            instance1.Id.Should().Be(instance2.Id);
-            instance1.Should().BeSameAs(instance2);
-        }
-
-        [Fact]
-        public async Task MultiTaskSingletonTest01()
+        Task t2 = Task.Run(() =>
         {
-            TestClass1? instance1 = null, instance2 = null, instance3 = null;
-            Task t1 = Task.Run(() =>
-            {
-                instance1 = Singleton<TestClass1>.Instance;
-            });
-
-            Task t2 = Task.Run(() =>
-            {
-                instance2 = Singleton<TestClass1>.Instance;
-            });
-            Task t3 = Task.Run(() =>
-            {
-                instance3 = Singleton<TestClass1>.Instance;
-            });
-
-            await Task.WhenAll(t1, t2, t3);
-
-            instance1.Should().NotBeNull();
-            instance2.Should().NotBeNull();
-            instance3.Should().NotBeNull();
-
-            instance1!.Should().BeSameAs(instance2);
-            instance1!.Should().BeSameAs(instance3);
-            instance1!.Id.Should().Be(instance2!.Id);
-            instance1!.Id.Should().Be(instance3!.Id);
-        }
-
-        [Fact]
-        public async Task MultiTaskSingletonTest02()
+            instance2 = Singleton<TestClass1>.Instance;
+        });
+        Task t3 = Task.Run(() =>
         {
-            TestClass1? instance1 = null, instance2 = null, instance3 = null;
+            instance3 = Singleton<TestClass1>.Instance;
+        });
 
-            Task t1 = Task.Run(() =>
-            {
-                instance1 = new TestClass1();
-                Singleton<TestClass1>.Add(instance1);
-            });
-            await Task.WhenAll(t1);
+        await Task.WhenAll(t2, t3);
 
-            Task t2 = Task.Run(() =>
-            {
-                instance2 = Singleton<TestClass1>.Instance;
-            });
-            Task t3 = Task.Run(() =>
-            {
-                instance3 = Singleton<TestClass1>.Instance;
-            });
+        instance1.ShouldNotBeNull();
+        instance2.ShouldNotBeNull();
+        instance3.ShouldNotBeNull();
 
-            await Task.WhenAll(t2, t3);
-
-            instance1.Should().NotBeNull();
-            instance2.Should().NotBeNull();
-            instance3.Should().NotBeNull();
-
-            instance1!.Should().BeSameAs(instance2);
-            instance1!.Should().BeSameAs(instance3);
-            instance1!.Id.Should().Be(instance2!.Id);
-            instance1!.Id.Should().Be(instance3!.Id);
-        }
+        instance1!.ShouldBeSameAs(instance2);
+        instance1!.ShouldBeSameAs(instance3);
+        instance1!.Id.ShouldBe(instance2!.Id);
+        instance1!.Id.ShouldBe(instance3!.Id);
     }
 }
