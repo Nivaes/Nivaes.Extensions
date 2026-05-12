@@ -13,7 +13,7 @@
     </PackageVersion>
     <PackageVersion Include="AsyncFixer" Version="1.6.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.14.1" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.300" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
   </ItemGroup>
 </Project>
