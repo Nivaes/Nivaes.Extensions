@@ -40,7 +40,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal --no-restore --collect:"XPlat Code Coverage"
+      run: dotnet test --configuration Release --no-build --no-restore --verbosity normal  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4.0.1
