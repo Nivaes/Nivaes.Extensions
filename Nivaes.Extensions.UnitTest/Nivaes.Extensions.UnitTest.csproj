@@ -2,11 +2,18 @@
   
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <AssemblyName>Nivaes.Extensions.UnitTest</AssemblyName>
     <RootNamespace>Nivaes.Extensions.UnitTest</RootNamespace>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Tests\Async\**" />
+    <EmbeddedResource Remove="Tests\Async\**" />
+    <None Remove="Tests\Async\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector">
@@ -14,22 +21,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Shouldly" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Moq" />
     <PackageReference Include="Nivaes.DataTestGenerator.XUnit" />
-    <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="xunit.v3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.Extensions\Nivaes.Extensions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Tests\Async\" />
   </ItemGroup>
 
   <ItemGroup>
