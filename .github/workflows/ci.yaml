@@ -42,9 +42,7 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build --no-restore --verbosity normal  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
 
-
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-
