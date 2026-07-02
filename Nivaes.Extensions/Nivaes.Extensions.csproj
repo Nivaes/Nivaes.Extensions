@@ -14,7 +14,9 @@
 		<PackageTags>Nivaes;Async;AsyncLazy;AsyncTemporary;extensions</PackageTags>
 
     <OptimizationPreference>Speed</OptimizationPreference>
-		<IsAotCompatible>true</IsAotCompatible>
+    <IsTrimmable>true</IsTrimmable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <RunAOTAnalysis>true</RunAOTAnalysis>
 	</PropertyGroup>
 
 	<ItemGroup>
