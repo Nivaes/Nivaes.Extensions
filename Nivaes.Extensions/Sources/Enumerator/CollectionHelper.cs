@@ -1,5 +1,4 @@
-﻿#if NET8_0
-namespace Nivaes
+﻿namespace Nivaes
 {
     using System;
     using System.Collections.Generic;
@@ -18,4 +17,3 @@ namespace Nivaes
         }
     }
 }
-#endif
