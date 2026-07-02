@@ -6,4 +6,4 @@ on:
 jobs:
   build_release:
 
-    uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_build_release.yml@develop
+    uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_build_release.yaml@develop
