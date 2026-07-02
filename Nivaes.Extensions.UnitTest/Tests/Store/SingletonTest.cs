@@ -94,16 +94,17 @@ public class SingletonTest
         Task t1 = Task.Run(() =>
         {
             instance1 = Singleton<TestClass1>.Instance;
-        });
+        }, TestContext.Current.CancellationToken);
 
         Task t2 = Task.Run(() =>
         {
             instance2 = Singleton<TestClass1>.Instance;
-        });
+        }, TestContext.Current.CancellationToken);
+
         Task t3 = Task.Run(() =>
         {
             instance3 = Singleton<TestClass1>.Instance;
-        });
+        }, TestContext.Current.CancellationToken);
 
         await Task.WhenAll(t1, t2, t3);
 
@@ -126,17 +127,18 @@ public class SingletonTest
         {
             instance1 = new TestClass1();
             Singleton<TestClass1>.Add(instance1);
-        });
+        }, TestContext.Current.CancellationToken);
         await Task.WhenAll(t1);
 
         Task t2 = Task.Run(() =>
         {
             instance2 = Singleton<TestClass1>.Instance;
-        });
+        }, TestContext.Current.CancellationToken);
+
         Task t3 = Task.Run(() =>
         {
             instance3 = Singleton<TestClass1>.Instance;
-        });
+        }, TestContext.Current.CancellationToken);
 
         await Task.WhenAll(t2, t3);
 

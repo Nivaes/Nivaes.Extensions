@@ -112,7 +112,7 @@ public class TemporaryStoreTest
             instance1_1 = new TestClass1();
             key1 = Singleton<TemporaryStore<TestClass1>>.Instance.Add(instance1_1);
             Console.WriteLine("T1_1 completada");
-        });
+        }, TestContext.Current.CancellationToken);
 
         Task t1_2 = Task.Run(() =>
         {
@@ -120,7 +120,7 @@ public class TemporaryStoreTest
             instance2_1 = new TestClass1();
             key2 = Singleton<TemporaryStore<TestClass1>>.Instance.Add(instance2_1);
             Console.WriteLine("T1_2 completada");
-        });
+        }, TestContext.Current.CancellationToken);
 
         await Task.WhenAll(t1_1, t1_2);
 
@@ -130,14 +130,14 @@ public class TemporaryStoreTest
             var result = Singleton<TemporaryStore<TestClass1>>.Instance.TryGetAndRemove(key1, out instance1_2);
             result.ShouldBeTrue();
             Console.WriteLine("T2_1 completada");
-        });
+        }, TestContext.Current.CancellationToken);
         Task t2_2 = Task.Run(() =>
         {
             Debug.WriteLine("Iniciando T1_2...");
             var result = Singleton<TemporaryStore<TestClass1>>.Instance.TryGetAndRemove(key2, out instance2_2);
             result.ShouldBeTrue();
             Debug.WriteLine("T2_2 completada ");
-        });
+        }, TestContext.Current.CancellationToken);
 
         await Task.WhenAll(t2_1, t2_2);
 
@@ -165,7 +165,7 @@ public class TemporaryStoreTest
 
         var key1 = store.Add(instance1_1, durationMilliseconds:100);
         var key2 = store.Add(instance2_1);
-        await Task.Delay(101);
+        await Task.Delay(101, TestContext.Current.CancellationToken);
 
         var result1 = store.TryGetAndRemove(key1, out var instance1_2);
         result1.ShouldBeFalse();
@@ -189,7 +189,7 @@ public class TemporaryStoreTest
 
         var key1 = store.Add(instance1_1, durationMilliseconds: 100);
         var key2 = store.Add(instance2_1);
-        await Task.Delay(101);
+        await Task.Delay(101, TestContext.Current.CancellationToken);
 
         store.Cleanup();
 

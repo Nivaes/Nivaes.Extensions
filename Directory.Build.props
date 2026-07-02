@@ -33,6 +33,7 @@
   <PropertyGroup>
     <EnablePackageValidation>true</EnablePackageValidation>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <NoWarn>$(NoWarn);NU1507;1591</NoWarn>
   </PropertyGroup>
 
 </Project>

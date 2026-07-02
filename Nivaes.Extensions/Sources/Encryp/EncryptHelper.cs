@@ -13,6 +13,8 @@
         /// </summary>
         /// <param name="plainText">String to be encrypted</param>
         /// <param name="password">Password</param>
+        /// <param name="salt">Salt</param>
+        /// <param name="iterations">Number of iterations</param>
         public static async ValueTask<string?> Encrypt(string plainText, string password, byte[] salt, int iterations)
         {
             if (plainText == null)
@@ -40,6 +42,8 @@
         /// </summary>
         /// <param name="encryptedText">String to be decrypted</param>
         /// <param name="password">Password used during encryption</param>
+        /// <param name="salt">Salt</param>
+        /// <param name="iterations">Number of iterations</param>   
         /// <exception cref="FormatException"></exception>
         public static async ValueTask<string?> Decrypt(string encryptedText, string password, byte[] salt, int iterations)
         {
@@ -70,19 +74,17 @@
             {
                 using (var aes = Aes.Create())
                 {
-                    using var key = new Rfc2898DeriveBytes(passwordBytes, salt, iterations, HashAlgorithmName.SHA256);
+                    var key = Rfc2898DeriveBytes.Pbkdf2(passwordBytes, salt, iterations, HashAlgorithmName.SHA256, (aes.KeySize + aes.BlockSize) / 8);
 
                     aes.KeySize = 256;
                     aes.BlockSize = 128;
-                    aes.Key = key.GetBytes(aes.KeySize / 8);
-                    aes.IV = key.GetBytes(aes.BlockSize / 8);
-
                     aes.Mode = CipherMode.CBC;
+                    aes.Key = key[..(aes.KeySize / 8)];
+                    aes.IV = key[(aes.KeySize / 8)..];
 
                     using (var cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
                     {
                         await cs.WriteAsync(bytesToBeEncrypted).ConfigureAwait(true);
-                        cs.Close();
                     }
 
                     encryptedBytes = ms.ToArray();
@@ -100,13 +102,13 @@
             {
                 using (var aes = Aes.Create())
                 {
-                    using var key = new Rfc2898DeriveBytes(passwordBytes, salt, iterations, HashAlgorithmName.SHA256);
+                    var key = Rfc2898DeriveBytes.Pbkdf2(passwordBytes, salt, iterations, HashAlgorithmName.SHA256, (aes.KeySize + aes.BlockSize) / 8);
 
                     aes.KeySize = 256;
                     aes.BlockSize = 128;
-                    aes.Key = key.GetBytes(aes.KeySize / 8);
-                    aes.IV = key.GetBytes(aes.BlockSize / 8);
                     aes.Mode = CipherMode.CBC;
+                    aes.Key = key[..(aes.KeySize / 8)];
+                    aes.IV = key[(aes.KeySize / 8)..];
 
                     using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
                     {

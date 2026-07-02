@@ -482,18 +482,18 @@ namespace Nivaes.UnitTest
             lazy.Value.IsCanceled.ShouldBeFalse();
         }
 
-        private int IntValueProvider()
+        private static int IntValueProvider()
         {
             return 1;
         }
 
-        private async Task<int> IntTaskValueProvider()
+        private static async Task<int> IntTaskValueProvider()
         {
             await Task.Delay(10).ConfigureAwait(true);
             return 1;
         }
 
-        private async ValueTask<int> IntValueTaskValueProvider()
+        private static async ValueTask<int> IntValueTaskValueProvider()
         {
             await Task.Delay(10).ConfigureAwait(true);
             return 1;
