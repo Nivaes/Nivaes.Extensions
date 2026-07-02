@@ -16,33 +16,4 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
-
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-         global-json-file: ./global.json
-
-    - name: Restore Dependencies
-      run: |
-          dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-
-    - name: Test
-      run: dotnet test --configuration Release --no-build --no-restore --verbosity normal  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4.0.1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+    uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_ci.yml@develop
