@@ -1,7 +1,7 @@
 ﻿using Shouldly;
 using Xunit;
 
-namespace Nivaes.UnitTest
+namespace Nivaes.Extensions.UnitTest
 {
     [Trait("TestType", "Unit")]
     public class AsyncLazyTest

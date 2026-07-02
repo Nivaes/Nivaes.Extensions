@@ -1,4 +1,5 @@
-﻿namespace Nivaes
+﻿#if Null
+namespace Nivaes
 {
     using System;
     using System.Collections.Generic;
@@ -17,3 +18,4 @@
         }
     }
 }
+#endif
