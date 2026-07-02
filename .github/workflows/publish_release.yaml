@@ -6,9 +6,6 @@ on:
       - released
       - prereleased
 
-permissions:
-  contents: read
-
 jobs:
   build_release:
 
