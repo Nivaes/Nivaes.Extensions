@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
@@ -9,12 +9,6 @@
     <RootNamespace>Nivaes.Extensions.UnitTest</RootNamespace>
   </PropertyGroup>
   
-  <ItemGroup>
-    <Compile Remove="Tests\Async\**" />
-    <EmbeddedResource Remove="Tests\Async\**" />
-    <None Remove="Tests\Async\**" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="coverlet.msbuild">
       <PrivateAssets>all</PrivateAssets>
