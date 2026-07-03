@@ -2,8 +2,21 @@ name: Build Release
 
 on:
   workflow_dispatch:
+    inputs:
+      prerelease:
+        description: "Prerelease identifier"
+        type: choice
+        required: false
+        options:
+          - ""
+          - Alpha
+          - Beta
+          - RC  
+          - Release
+        default: ""
 
 jobs:
   build_release:
-
     uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_build_release.yaml@develop
+    with:
+      prerelease: ${{ github.event.inputs.prerelease }} 

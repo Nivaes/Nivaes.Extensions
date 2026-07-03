@@ -4,9 +4,7 @@ on:
   release:
     types:
       - released
-      - prereleased
 
 jobs:
   build_release:
-
     uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_publish_release.yaml@develop
