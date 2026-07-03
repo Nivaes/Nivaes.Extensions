@@ -3,7 +3,7 @@ name: Publish Release
 on:
   release:
     types:
-      - released
+      - published
 
 permissions:
   contents: write
@@ -11,5 +11,5 @@ permissions:
 jobs:
   build_release:
     uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_publish_release.yaml@develop
-    with:
+    secrets:
       nuge_token: ${{ secrets.NIVAES_NUGET_TOKEN }}
