@@ -18,6 +18,7 @@
   <Folder Name="/Solution Items/.github/workflows/">
     <File Path=".github/workflows/build_release.yaml" />
     <File Path=".github/workflows/ci.yaml" />
+    <File Path=".github/workflows/delete-old-runs.yaml" />
     <File Path=".github/workflows/publish_release.yaml" />
   </Folder>
   <Project Path="Nivaes.Extensions.UnitTest/Nivaes.Extensions.UnitTest.csproj" />
