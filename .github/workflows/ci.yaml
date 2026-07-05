@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    branches-ignore:
-    - 'release/v**'  
+    # branches-ignore:
+    # - 'release/v**'  
     paths-ignore:
     - '**/*.md'
     - '**/*.sln'
