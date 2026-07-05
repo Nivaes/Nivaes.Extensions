@@ -12,9 +12,7 @@
     <File Path="Directory.Packages.props" />
     <File Path="global.json" />
   </Folder>
-  <Folder Name="/Solution Items/.github/">
-    <File Path=".github/dependabot.yml" />
-  </Folder>
+  <Folder Name="/Solution Items/.github/" />
   <Folder Name="/Solution Items/.github/workflows/">
     <File Path=".github/workflows/build_release.yaml" />
     <File Path=".github/workflows/ci.yaml" />
