@@ -5,6 +5,10 @@ on:
     - cron: "0 4 * * 0"   # Todos los domingos a las 04:00 UTC
   workflow_dispatch:
 
+permissions:
+  actions: write
+  contents: read
+
 jobs:
   cleanup:
     uses: Nivaes/Nivaes.Workflows/.github/workflows/delete-old-runs.yaml@develop  
