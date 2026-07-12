@@ -15,9 +15,9 @@ public class FileEncryptedTest
         // The salt bytes must be at least 8 bytes.
         var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-        await FileEncrypted.EncryptedWriteAllTextAsync(filenameGenerator, originMessage, "pass", saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
+        await FileEncrypted.WriteAllTextAsync(filenameGenerator, originMessage, "pass", saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        var decryptMessage = await FileEncrypted.EncryptedReadAllTextAsync(filenameGenerator, "pass", saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
+        var decryptMessage = await FileEncrypted.ReadAllTextAsync(filenameGenerator, "pass", saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         decryptMessage.ShouldBe(originMessage);
     }
