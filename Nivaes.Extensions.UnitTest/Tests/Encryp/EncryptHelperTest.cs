@@ -2,7 +2,7 @@
 using Shouldly;
 using Xunit;
 
-namespace Nivaes.Extensions.UnitTest;
+namespace Nivaes.Extensions.UnitTest.Encryp;
 
 
 [Trait("TestType", "Unit")]
@@ -16,10 +16,10 @@ public class EncryptHelperTest
         var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
         var originMessage = "kjkdkdif";
-        var encriptedMessage = await EncryptHelper.Encrypt(originMessage, "pass", saltBytes, 1000).ConfigureAwait(true);
+        var encriptedMessage = await EncryptHelper.EncryptAsync(originMessage, "pass", saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
         encriptedMessage.ShouldNotBeNull();
 
-        var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage!, "pass", saltBytes, 1000).ConfigureAwait(true);
+        var decryptMessage = await EncryptHelper.DecryptAsync(encriptedMessage!, "pass", saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         decryptMessage.ShouldBe(originMessage);
     }
@@ -37,10 +37,10 @@ public class EncryptHelperTest
         // The salt bytes must be at least 8 bytes.
         var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-        var encriptedMessage = await EncryptHelper.Encrypt(message, pass, saltBytes, 1000).ConfigureAwait(true);
+        var encriptedMessage = await EncryptHelper.EncryptAsync(message, pass, saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
         encriptedMessage.ShouldNotBeNull();
 
-        var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage!, pass, saltBytes, 1000).ConfigureAwait(true);
+        var decryptMessage = await EncryptHelper.DecryptAsync(encriptedMessage!, pass, saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         decryptMessage.ShouldBe(message);
     }
@@ -54,10 +54,10 @@ public class EncryptHelperTest
         var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
         string pass = "938!·";
-        var encriptedMessage = await EncryptHelper.Encrypt(message, pass, saltBytes, 1000).ConfigureAwait(true);
+        var encriptedMessage = await EncryptHelper.EncryptAsync(message, pass, saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
         encriptedMessage.ShouldNotBeNull();
 
-        var decryptMessage = await EncryptHelper.Decrypt(encriptedMessage!, pass, saltBytes, 1000).ConfigureAwait(true);
+        var decryptMessage = await EncryptHelper.DecryptAsync(encriptedMessage!, pass, saltBytes, 1000, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         decryptMessage.ShouldBe(message);
     }
