@@ -1,12 +1,11 @@
-﻿#if Null
-namespace Nivaes
+﻿namespace Nivaes
 {
     using System;
     using System.Collections.Generic;
 
     public static class CollectionHelper
     {
-        public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> query)
+        public static void AddRange<T>(this IList<T> collection, IEnumerable<T> query)
         {
             ArgumentNullException.ThrowIfNull(collection);
             ArgumentNullException.ThrowIfNull(query);
@@ -18,4 +17,3 @@ namespace Nivaes
         }
     }
 }
-#endif
