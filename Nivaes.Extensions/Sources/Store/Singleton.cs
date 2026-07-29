@@ -3,18 +3,14 @@
     public static class Singleton<TValue>
          where TValue : new()
     {
-#if NET8_0
-        private static readonly object Lock = new();
-#elif NET9_0_OR_GREATER
-        private static readonly System.Threading.Lock Lock = new();
-#endif
-        private static TValue? mInstance;
+        private static readonly Lock Lock = new();
+        private static TValue? _instance;
 
         public static void Clear()
         {
             lock (Lock)
             {
-                mInstance = default;
+                _instance = default;
             }
         }
 
@@ -24,11 +20,11 @@
             {
                 lock (Lock)
                 {
-                    if (object.ReferenceEquals(mInstance, default))
+                    if (object.ReferenceEquals(_instance, default))
                     {
-                        mInstance = new TValue();
+                        _instance = new TValue();
                     }
-                    return mInstance;
+                    return _instance;
                 }
             }
         }
@@ -37,7 +33,7 @@
         {
             lock (Lock)
             {
-                mInstance = instance;
+                _instance = instance;
             }
         }
     }
