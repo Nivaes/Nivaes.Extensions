@@ -1,14 +1,10 @@
 ﻿namespace Nivaes
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     public static class AsyncEnumerableHelper
     {
         public static async ValueTask<T> FirstOrDefaultAsync<T>(this IAsyncEnumerable<T> values)
         {
-            if (values == null) throw new ArgumentNullException(nameof(values));
+            ArgumentNullException.ThrowIfNull(values);
 
             var enumerator = values.GetAsyncEnumerator();
 
@@ -26,7 +22,7 @@
         {
             await Task.CompletedTask.ConfigureAwait(false);
 
-            if (values == null) throw new ArgumentNullException(nameof(values));
+            ArgumentNullException.ThrowIfNull(values);
 
             foreach (var value in values)
             {
@@ -38,7 +34,7 @@
         {
             await Task.CompletedTask.ConfigureAwait(false);
 
-            if (values == null) throw new ArgumentNullException(nameof(values));
+            ArgumentNullException.ThrowIfNull(values);
 
             foreach (var value in values)
             {
@@ -48,7 +44,7 @@
 
         public static async IAsyncEnumerable<T> ToAsyncEnumerable<T>(this List<T> values)
         {
-            if (values == null) throw new ArgumentNullException(nameof(values));
+            ArgumentNullException.ThrowIfNull(values);
 
             await Task.CompletedTask.ConfigureAwait(false);
 
