@@ -1,7 +1,4 @@
-﻿using Shouldly;
-using Xunit;
-
-namespace Nivaes.Extensions.UnitTest;
+﻿namespace Nivaes.Extensions.UnitTest;
 
 [Trait("TestType", "Unit")]
 

@@ -1,7 +1,4 @@
-﻿using Shouldly;
-using Xunit;
-
-namespace Nivaes.App.UnitTest
+﻿namespace Nivaes.App.UnitTest
 {
     [Trait("TestType", "Unit")]
     public class KeyContainerManagerTest
@@ -23,7 +20,7 @@ namespace Nivaes.App.UnitTest
         {
             var instance1_1 = new TestClass1();
             var instance2_1 = new TestClass1();
-            int key1 = 56226, key2 = 88951;
+            const int key1 = 56226, key2 = 88951;
 
             var manager = new KeyContainerManager<TestClass1>(new[]
             {

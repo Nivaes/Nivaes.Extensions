@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics;
-using Shouldly;
-using Xunit;
 
 namespace Nivaes.Extensions.UnitTest;
 

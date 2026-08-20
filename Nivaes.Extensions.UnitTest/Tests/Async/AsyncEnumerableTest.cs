@@ -3,11 +3,11 @@
 [Trait("TestType", "Unit")]
 public class AsyncEnumerableTest
 {
-    private readonly ITestOutputHelper mTestOutputHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
 
     public AsyncEnumerableTest(ITestOutputHelper testOutputHelper)
     {
-        mTestOutputHelper = testOutputHelper;
+        _testOutputHelper = testOutputHelper;
     }
 
     [Fact]
@@ -20,7 +20,7 @@ public class AsyncEnumerableTest
         int i = 0;
         await foreach (var value in asyncValues)
         {
-            mTestOutputHelper.WriteLine($"{value}");
+            _testOutputHelper.WriteLine($"{value}");
             i++;
         }
 
@@ -37,7 +37,7 @@ public class AsyncEnumerableTest
         int i = 0;
         await foreach (var value in asyncValues)
         {
-            mTestOutputHelper.WriteLine($"{value}");
+            _testOutputHelper.WriteLine($"{value}");
             i++;
         }
 
@@ -54,7 +54,7 @@ public class AsyncEnumerableTest
         int i = 0;
         await foreach (var value in asyncValues)
         {
-            mTestOutputHelper.WriteLine($"{value}");
+            _testOutputHelper.WriteLine($"{value}");
             i++;
         }
 
