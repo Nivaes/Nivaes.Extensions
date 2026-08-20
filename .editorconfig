@@ -227,3 +227,6 @@ dotnet_diagnostic.S2743.severity = none
 
 # S1066: Mergeable "if" statements should be combined
 dotnet_diagnostic.S1066.severity = none
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none

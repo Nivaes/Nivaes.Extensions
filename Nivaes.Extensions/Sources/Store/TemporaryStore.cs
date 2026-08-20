@@ -1,7 +1,7 @@
-﻿namespace Nivaes
-{
-    using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 
+namespace Nivaes
+{
     public class TemporaryStore<TValue>
     {
         private readonly ConcurrentDictionary<int, StoreItem> values = new();

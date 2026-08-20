@@ -1,7 +1,5 @@
 ﻿namespace Nivaes
 {
-    using System;
-
     public static class GpsHelper
     {
         private const double EarthRadioKm = 6371.009;

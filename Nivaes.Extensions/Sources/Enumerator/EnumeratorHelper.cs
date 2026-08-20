@@ -1,8 +1,5 @@
 ﻿namespace Nivaes
 {
-    using System;
-    using System.Collections.Generic;
-
     public static class EnumeratorHelper
     {
         public static IEnumerable<T> Take<T>(this IEnumerator<T> enumerator, int n)

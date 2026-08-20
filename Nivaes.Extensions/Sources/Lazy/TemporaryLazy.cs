@@ -1,30 +1,27 @@
 ﻿namespace Nivaes
 {
-    using System;
-
     public class TemporaryLazy<T>
     {
-        private readonly Func<T> mFactory;
-        private readonly TimeSpan mLifetime;
-        private readonly object mValueLock;
+        private readonly Func<T> _factory;
+        private readonly TimeSpan _lifetime;
+        private readonly Lock _valueLock = new();
 
         private T? mValue;
         private DateTime mCreationTime;
 
         public TemporaryLazy(Func<T> factory, TimeSpan lifetime)
         {
-            mFactory = factory;
-            mLifetime = lifetime;
-            mValueLock = new ();
+            _factory = factory;
+            _lifetime = lifetime;
         }
 
         public bool HasValue
         {
             get
             {
-                lock (mValueLock)
+                lock (_valueLock)
                 {
-                    return !(Equals(mValue, default(T)) && mCreationTime.Add(mLifetime) > DateTime.UtcNow);
+                    return !(Equals(mValue, default(T)) && mCreationTime.Add(_lifetime) > DateTime.UtcNow);
                 }
             }
         }
@@ -33,11 +30,11 @@
         {
             get
             {
-                lock (mValueLock)
+                lock (_valueLock)
                 {
-                    if (Equals(mValue, default(T)) || mCreationTime.Add(mLifetime) > DateTime.UtcNow)
+                    if (Equals(mValue, default(T)) || mCreationTime.Add(_lifetime) > DateTime.UtcNow)
                     {
-                        mValue = mFactory();
+                        mValue = _factory();
                         mCreationTime = DateTime.UtcNow;
                     }
 

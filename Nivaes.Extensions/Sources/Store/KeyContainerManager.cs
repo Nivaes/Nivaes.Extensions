@@ -6,7 +6,7 @@ namespace Nivaes
     {
         private readonly Lock @lock = new();
 
-        private KeyStoreItem[] mValues;
+        private KeyStoreItem[] _values;
 
         public struct KeyStoreItem
         {
@@ -25,15 +25,15 @@ namespace Nivaes
 
         public KeyContainerManager()
         {
-            mValues = [];
+            _values = [];
         }
 
         public KeyContainerManager(KeyStoreItem[] values)
         {
             lock (@lock)
             {
-                mValues = values;
-                var keyInstanceResolverValues = new Span<KeyStoreItem>(mValues);
+                _values = values;
+                var keyInstanceResolverValues = new Span<KeyStoreItem>(_values);
                 keyInstanceResolverValues.Sort(new KeyPresentationComparer());
             }
         }
@@ -45,7 +45,7 @@ namespace Nivaes
                 var keyInstanceResolverValues = new Span<KeyStoreItem>(newValues);
                 keyInstanceResolverValues.Sort(new KeyPresentationComparer());
 
-                var oldValues = mValues;
+                var oldValues = _values;
                 var allValues = new KeyStoreItem[oldValues.Length + newValues.Length];
                 int i = 0, j = 0, m = 0;
 
@@ -69,7 +69,7 @@ namespace Nivaes
                     allValues[m++] = newValues[j++];
                 }
 
-                mValues = allValues;
+                _values = allValues;
             }
         }
 
@@ -81,7 +81,7 @@ namespace Nivaes
 
                 if (result)
                 {
-                    presentationType = mValues[position].Value;
+                    presentationType = _values[position].Value;
                     return true;
                 }
                 else
@@ -96,13 +96,13 @@ namespace Nivaes
         {
             lock (@lock)
             {
-                var high = mValues.Length - 1;
+                var high = _values.Length - 1;
                 var low = 0;
 
                 while (low <= high)
                 {
                     int mid = (high + low) / 2;
-                    var midKey = mValues[mid].Key;
+                    var midKey = _values[mid].Key;
 
                     if (midKey == key)
                     {

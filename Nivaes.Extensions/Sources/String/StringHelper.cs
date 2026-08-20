@@ -1,7 +1,7 @@
-﻿namespace Nivaes
-{
-    using System.Globalization;
+﻿using System.Globalization;
 
+namespace Nivaes
+{
     public static class StringHelper
     {
         public static string FirstCharToUpper(this string s)

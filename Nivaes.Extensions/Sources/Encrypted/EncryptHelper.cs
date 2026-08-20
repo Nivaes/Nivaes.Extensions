@@ -73,7 +73,7 @@ public static class EncryptHelper
     {
         byte[] encryptedBytes;
 
-        using (MemoryStream ms = new MemoryStream())
+        await using (MemoryStream ms = new MemoryStream())
         {
             using (var aes = Aes.Create())
             {
@@ -86,7 +86,7 @@ public static class EncryptHelper
                 aes.Key = key[..(aes.KeySize / 8)];
                 aes.IV = key[(aes.KeySize / 8)..];
 
-                using (var cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                await using (var cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
                 {
                     await cs.WriteAsync(bytesToBeEncrypted, cancellationToken).ConfigureAwait(true);
                 }
@@ -102,7 +102,7 @@ public static class EncryptHelper
     {
         byte[] decryptedBytes;
 
-        using (MemoryStream ms = new MemoryStream())
+        await using (MemoryStream ms = new MemoryStream())
         {
             using (var aes = Aes.Create())
             {
@@ -114,7 +114,7 @@ public static class EncryptHelper
                 aes.Key = key[..(aes.KeySize / 8)];
                 aes.IV = key[(aes.KeySize / 8)..];
 
-                using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                await using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
                 {
                     await cs.WriteAsync(bytesToBeDecrypted, cancellationToken).ConfigureAwait(true);
                 }

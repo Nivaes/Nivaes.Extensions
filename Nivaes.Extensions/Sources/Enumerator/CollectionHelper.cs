@@ -1,8 +1,5 @@
 ﻿namespace Nivaes
 {
-    using System;
-    using System.Collections.Generic;
-
     public static class CollectionHelper
     {
         public static void AddRange<T>(this IList<T> collection, IEnumerable<T> query)
