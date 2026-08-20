@@ -1,6 +1,4 @@
 ﻿using Nivaes.DataTestGenerator.Xunit;
-using Shouldly;
-using Xunit;
 
 namespace Nivaes.Extensions.UnitTest.Encryp;
 
