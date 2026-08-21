@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Nivaes 
+namespace Nivaes
 {
     public class KeyContainerManager<TValue>
     {
-        private readonly Lock @lock = new();
+        private readonly Lock _lock = new();
 
         private KeyStoreItem[] _values;
 
@@ -14,14 +14,9 @@ namespace Nivaes
             public TValue Value { get; set; }
         }
 
-        private sealed class KeyPresentationComparer
-            : IComparer<KeyStoreItem>
-        {
-            public int Compare(KeyStoreItem x, KeyStoreItem y)
-            {
-                return x.Key.CompareTo(y.Key);
-            }
-        }
+        private static readonly IComparer<KeyStoreItem> Comparer =
+                Comparer<KeyStoreItem>.Create(static (x, y) => x.Key.CompareTo(y.Key));
+
 
         public KeyContainerManager()
         {
@@ -30,21 +25,19 @@ namespace Nivaes
 
         public KeyContainerManager(KeyStoreItem[] values)
         {
-            lock (@lock)
+            lock (_lock)
             {
                 _values = values;
-                var keyInstanceResolverValues = new Span<KeyStoreItem>(_values);
-                keyInstanceResolverValues.Sort(new KeyPresentationComparer());
+                _values.AsSpan().Sort(Comparer);
             }
         }
 
         public void Merge(KeyStoreItem[] newValues)
         {
-            lock (@lock)
-            {
-                var keyInstanceResolverValues = new Span<KeyStoreItem>(newValues);
-                keyInstanceResolverValues.Sort(new KeyPresentationComparer());
+            newValues.AsSpan().Sort(Comparer);
 
+            lock (_lock)
+            {
                 var oldValues = _values;
                 var allValues = new KeyStoreItem[oldValues.Length + newValues.Length];
                 int i = 0, j = 0, m = 0;
@@ -75,51 +68,47 @@ namespace Nivaes
 
         protected internal bool TryGetValue(nint key, [MaybeNullWhen(false)] out TValue presentationType)
         {
-            lock (@lock)
-            {
-                var result = TryGetValue(key, out int position);
+            var result = TryGetValue(key, out int position);
 
-                if (result)
-                {
-                    presentationType = _values[position].Value;
-                    return true;
-                }
-                else
-                {
-                    presentationType = default;
-                    return false;
-                }
+            if (result)
+            {
+                var values = Volatile.Read(ref _values);
+                presentationType = values[position].Value;
+                return true;
+            }
+            else
+            {
+                presentationType = default;
+                return false;
             }
         }
 
         protected bool TryGetValue(nint key, [MaybeNullWhen(false)] out int position)
         {
-            lock (@lock)
+            var values = Volatile.Read(ref _values);
+            var high = _values.Length - 1;
+            var low = 0;
+
+            while (low <= high)
             {
-                var high = _values.Length - 1;
-                var low = 0;
+                int mid = (high + low) / 2;
+                var midKey = values[mid].Key;
 
-                while (low <= high)
+                if (midKey == key)
                 {
-                    int mid = (high + low) / 2;
-                    var midKey = _values[mid].Key;
-
-                    if (midKey == key)
-                    {
-                        position = mid;
-                        return true;
-                    }
-                    else
-                    {
-                        if (key < midKey)
-                            high = mid - 1;
-                        else
-                            low = mid + 1;
-                    }
+                    position = mid;
+                    return true;
                 }
-                position = -1;
-                return false;
+                else
+                {
+                    if (key < midKey)
+                        high = mid - 1;
+                    else
+                        low = mid + 1;
+                }
             }
+            position = -1;
+            return false;
         }
     }
 }
