@@ -31,6 +31,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <_CommonTargets>net9.0;net10.0;net11.0</_CommonTargets>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <EnablePackageValidation>true</EnablePackageValidation>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <NoWarn>$(NoWarn);NU1507;1591</NoWarn>
